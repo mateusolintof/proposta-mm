@@ -181,14 +181,63 @@ Depois disso, commits devem ser pequenos e descritivos.
 
 ## 12) Definição de pronto (DoD)
 O projeto só é considerado pronto quando:
-- [ ] Páginas `/`, `/performance`, `/plano`, `/proposta` estão implementadas
-- [ ] Layout mobile-first validado (sem overflow, textos legíveis)
-- [ ] Desktop responsivo (largura confortável, grids funcionais)
-- [ ] Dados exibidos batem com `docs/dados_internos.md`
-- [ ] Benchmarks exibidos batem com `docs/benchmarks_report.md`
-- [ ] Proposta exibida bate com `docs/proposta-valor.md`
-- [ ] Sem integrações externas
+- [x] Páginas `/`, `/performance`, `/plano`, `/proposta` estão implementadas
+- [x] Layout mobile-first validado (sem overflow, textos legíveis)
+- [x] Desktop responsivo (largura confortável, grids funcionais)
+- [x] Dados exibidos batem com `docs/dados_internos.md`
+- [x] Benchmarks exibidos batem com `docs/benchmarks_report.md`
+- [x] Proposta exibida bate com `docs/proposta-valor.md`
+- [x] Sem integrações externas
 
 ---
 
-**Nota para agentes:** respeitar o fluxo “por etapas” do Mateus. Se ele pedir apenas documentação/spec, **não avançar** para código. Se ele pedir implementação, seguir este spec ao pé da letra.
+## 13) Status da Implementação (Dez/2025)
+
+### Implementação Concluída
+O projeto foi implementado seguindo este spec em 30/12/2025.
+
+**Stack utilizada:**
+- Next.js 16.1.1 (App Router)
+- TypeScript 5.x
+- Tailwind CSS 4.x
+- Recharts 3.6.0
+- Lucide React 0.562.0
+
+**Arquivos criados:**
+```
+app/
+├── layout.tsx              # Layout root com HeaderNav
+├── page.tsx                # Visão Executiva
+├── performance/page.tsx    # Performance com tabs
+├── plano/page.tsx          # Roadmap 30/60/90
+└── proposta/page.tsx       # Valores e CTAs
+
+components/
+├── ui/
+│   ├── HeaderNav.tsx       # Navegação mobile-first
+│   ├── KpiCard.tsx         # Cards de métricas
+│   ├── ChartCard.tsx       # Container de gráficos
+│   ├── SectionHeader.tsx   # Títulos de seção
+│   ├── InsightBlock.tsx    # Blocos de insight
+│   ├── Tabs.tsx            # Tabs de navegação
+│   └── Callout.tsx         # Notas de metodologia
+└── charts/
+    ├── AudienciaChart.tsx  # Gráficos de audiência
+    ├── MensagensChart.tsx  # Gráficos de mensagens
+    └── OrganicoChart.tsx   # Gráficos orgânico
+
+lib/
+└── data.ts                 # Dados consolidados dos docs
+```
+
+**Decisões de implementação:**
+- `/anexos` não foi implementada (decisão do cliente)
+- Contato CTA: mateusolintof@gmail.com | (62) 99862-1000
+- Conteúdo do roadmap criado com base no contexto do projeto
+
+**Repositório:**
+- https://github.com/mateusolintof/proposta-mm.git
+
+---
+
+**Nota para agentes:** respeitar o fluxo "por etapas" do Mateus. Se ele pedir apenas documentação/spec, **não avançar** para código. Se ele pedir implementação, seguir este spec ao pé da letra.
