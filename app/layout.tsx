@@ -1,16 +1,36 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { HeaderNav } from "@/components/ui/HeaderNav";
 
-const geist = Geist({
-  variable: "--font-geist",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "MM Renovacao 2025 | Proposta de Trafego Pago",
-  description: "Performance dos ultimos 6 meses e proposta de renovacao para gestao de trafego pago.",
+  title: "MM Renovacao 2025 | Resultados e Proposta",
+  description: "6 meses de resultados em gestao de trafego pago. Performance, insights e proposta de renovacao.",
+  authors: [{ name: "Mateus Olinto" }],
+  openGraph: {
+    title: "MM Renovacao 2025 | Resultados e Proposta",
+    description: "6 meses de resultados em gestao de trafego pago",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({
@@ -19,17 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${geist.variable} font-sans antialiased bg-gray-50 min-h-screen`}>
-        <HeaderNav />
-        <main className="max-w-6xl mx-auto px-4 py-6 md:py-8">
-          {children}
-        </main>
-        <footer className="border-t border-gray-200 mt-12 py-6">
-          <div className="max-w-6xl mx-auto px-4 text-center text-sm text-gray-500">
-            <p>MM Renovacao 2025 | Dados de Jul-Dez/2025</p>
-          </div>
-        </footer>
+    <html lang="pt-BR" className="dark">
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#0a0a0a] text-white min-h-screen`}
+      >
+        {children}
+        <div className="noise-overlay" aria-hidden="true" />
       </body>
     </html>
   );
