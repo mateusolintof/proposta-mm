@@ -70,7 +70,11 @@ MM-Renovacao/
 │   ├── dados_internos.md
 │   ├── benchmarks_report.md
 │   └── proposta-valor.md
-└── data/                    # Arquivos brutos (XLSX/CSV)
+└── data/                    # Arquivos brutos (referencia/lastro)
+    ├── relatorio-meta-2025-{07-12}.pdf  # 6 PDFs mensais
+    ├── meta-audiencia-mensal.xlsx
+    ├── meta-mensagens-mensal.xlsx
+    └── instagram-organico-mensal.csv
 ```
 
 ## Como Executar

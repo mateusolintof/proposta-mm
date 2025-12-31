@@ -53,8 +53,17 @@ MM-Renovacao/
 │   ├── dados_internos.md
 │   ├── benchmarks_report.md
 │   └── proposta-valor.md
-├── data/                    # Arquivos brutos (XLSX/CSV)
-└── CLAUDE.md                # Este arquivo
+├── data/                    # Arquivos brutos (referencia/lastro)
+│   ├── relatorio-meta-2025-07.pdf
+│   ├── relatorio-meta-2025-08.pdf
+│   ├── relatorio-meta-2025-09.pdf
+│   ├── relatorio-meta-2025-10.pdf
+│   ├── relatorio-meta-2025-11.pdf
+│   ├── relatorio-meta-2025-12.pdf
+│   ├── meta-audiencia-mensal.xlsx
+│   ├── meta-mensagens-mensal.xlsx
+│   └── instagram-organico-mensal.csv
+└── CLAUDE.md                # Este arquivo (symlink para AGENTS.md)
 ```
 
 ## 2) Principios (nao negociaveis)
@@ -103,8 +112,26 @@ MM-Renovacao/
 - `docs/benchmarks_report.md` (benchmarks e conversoes)
 - `docs/proposta-valor.md` (precos)
 
-### 4.2 Fonte secundaria (opcional)
-Os arquivos em `data/` ficam como referencia/lastro.
+### 4.2 Fonte secundaria (arquivos brutos em `data/`)
+
+Os arquivos em `data/` servem como referencia/lastro dos dados consolidados:
+
+**Relatorios mensais Meta Ads (PDFs):**
+| Arquivo | Periodo | Conteudo |
+|---------|---------|----------|
+| `relatorio-meta-2025-07.pdf` | Jul/2025 | Relatorio completo Meta Ads |
+| `relatorio-meta-2025-08.pdf` | Ago/2025 | Relatorio completo Meta Ads |
+| `relatorio-meta-2025-09.pdf` | Set/2025 | Relatorio completo Meta Ads |
+| `relatorio-meta-2025-10.pdf` | Out/2025 | Relatorio completo Meta Ads |
+| `relatorio-meta-2025-11.pdf` | Nov/2025 | Relatorio completo Meta Ads |
+| `relatorio-meta-2025-12.pdf` | Dez/2025 | Relatorio completo Meta Ads |
+
+**Planilhas consolidadas (dados mensais):**
+| Arquivo | Conteudo |
+|---------|----------|
+| `meta-audiencia-mensal.xlsx` | Campanhas de audiencia (Jul-Dez/2025) |
+| `meta-mensagens-mensal.xlsx` | Campanhas de mensagem (Ago-Dez/2025) |
+| `instagram-organico-mensal.csv` | Metricas organicas Instagram (Jul-Dez/2025) |
 
 ### 4.3 Dados exibidos na apresentacao
 **Meta Ads — Audiencia (Jul-Dez/2025)**
