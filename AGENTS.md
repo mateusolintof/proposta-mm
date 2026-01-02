@@ -21,6 +21,7 @@ Apresentacao **premium** em formato **pitch deck** (slides horizontais com scrol
 MM-Renovacao/
 ├── app/
 │   ├── layout.tsx           # Root layout (dark theme, fonts)
+│   ├── favicon.ico          # Favicon (logo cliente)
 │   ├── page.tsx             # SPA com navegacao de 5 slides
 │   └── globals.css          # Tema dark premium + CSS variables
 ├── components/
@@ -66,6 +67,8 @@ MM-Renovacao/
 │   ├── mm-diamonds-02.jpg
 │   ├── mm-diamonds-03.jpg
 │   └── mm-esmeraldas-01.jpg
+├── public/brand/            # Assets de marca (logo)
+│   └── monicametran-logo.jpg
 └── CLAUDE.md                # Este arquivo
 ```
 
@@ -306,6 +309,9 @@ Tom: executivo, direto, sem hype.
 Imagens em `public/ads/`:
 - Nomear com padrao: `mm-{colecao}-{numero}.jpg`
 - Dimensoes recomendadas: 400x400px (thumbnails)
+
+Assets de marca em `public/brand/`:
+- `monicametran-logo.jpg` (usada no SlideHero e no `app/favicon.ico`)
 
 ## 12) DevEx: scripts e comandos
 

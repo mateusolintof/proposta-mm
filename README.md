@@ -4,20 +4,15 @@ Apresentacao premium em formato **pitch deck** (slides horizontais) para renovac
 
 ## Visao Geral
 
-Aplicacao Single Page com 10 slides navegaveis por **swipe** (mobile) ou **teclado** (desktop):
+Aplicacao Single Page com **5 slides horizontais** (scroll vertical dentro de cada slide), navegaveis por **swipe** (mobile) ou **teclado** (desktop):
 
 | Slide | Conteudo |
 |-------|----------|
-| 0 | Hero - "6 meses de resultados" |
-| 1 | KPIs - 4 metricas principais animadas |
-| 2 | Audiencia - Graficos gasto vs visitas |
-| 3 | Mensagens - Graficos gasto vs conversas |
-| 4 | Benchmarks - Comparativo com mercado |
-| 5 | Organico - Metricas Instagram |
-| 6 | Conquistas - Lista de resultados |
-| 7 | Plano - Roadmap 30/60/90 dias |
-| 8 | Proposta - Pricing cards |
-| 9 | CTA - Botoes WhatsApp/Email |
+| 0 | Hero - Capa minimalista (periodo + canais) |
+| 1 | Resultados - KPIs + evolucao mensal + benchmarks |
+| 2 | Criativos - Grid visual + filtros |
+| 3 | Insights - Padroes + recomendacoes 2026 |
+| 4 | Proposta - Plano 30/60/90 + pricing + CTA |
 
 ## Stack Tecnologica
 
@@ -37,21 +32,17 @@ Aplicacao Single Page com 10 slides navegaveis por **swipe** (mobile) ou **tecla
 MM-Renovacao/
 ├── app/
 │   ├── layout.tsx           # Root layout (dark theme)
+│   ├── favicon.ico          # Favicon (logo cliente)
 │   ├── page.tsx             # SPA com navegacao de slides
 │   └── globals.css          # Tema dark premium
 ├── components/
-│   ├── slides/              # 10 slides da apresentacao
+│   ├── slides/              # 5 slides da apresentacao
 │   │   ├── SlideContainer.tsx
 │   │   ├── SlideHero.tsx
-│   │   ├── SlideKPIs.tsx
-│   │   ├── SlideAudiencia.tsx
-│   │   ├── SlideMensagens.tsx
-│   │   ├── SlideBenchmarks.tsx
-│   │   ├── SlideOrganico.tsx
-│   │   ├── SlideConquistas.tsx
-│   │   ├── SlidePlano.tsx
-│   │   ├── SlideProposta.tsx
-│   │   └── SlideCTA.tsx
+│   │   ├── SlideResultados.tsx
+│   │   ├── SlideCriativos.tsx
+│   │   ├── SlideInsights.tsx
+│   │   └── SlideProposta.tsx
 │   ├── animated/            # Componentes animados
 │   │   ├── NumberTicker.tsx
 │   │   ├── AnimatedKPI.tsx
@@ -70,11 +61,15 @@ MM-Renovacao/
 │   ├── dados_internos.md
 │   ├── benchmarks_report.md
 │   └── proposta-valor.md
-└── data/                    # Arquivos brutos (referencia/lastro)
-    ├── relatorio-meta-2025-{07-12}.pdf  # 6 PDFs mensais
-    ├── meta-audiencia-mensal.xlsx
-    ├── meta-mensagens-mensal.xlsx
-    └── instagram-organico-mensal.csv
+├── data/                    # Arquivos brutos (referencia/lastro)
+│   ├── relatorio-meta-2025-{07-12}.pdf  # 6 PDFs mensais
+│   ├── meta-audiencia-mensal.xlsx
+│   ├── meta-mensagens-mensal.xlsx
+│   └── instagram-organico-mensal.csv
+└── public/
+    ├── ads/                  # Imagens dos criativos
+    └── brand/                # Assets de marca
+        └── monicametran-logo.jpg # Logo (foto de perfil) usada no Hero e no favicon
 ```
 
 ## Como Executar
@@ -124,7 +119,7 @@ npm run start
 
 ## Dados
 
-Todos os dados sao extraidos de `docs/`:
+Fonte de verdade: `lib/data.ts` (consolidado de `docs/` e `data/`):
 
 ### Meta Ads - Audiencia (Jul-Dez/2025)
 - Gasto total: R$ 8.830,15
@@ -144,10 +139,15 @@ Todos os dados sao extraidos de `docs/`:
 
 ## Principios
 
-1. **Nao inventar numeros** - Todos os dados vem dos docs
+1. **Nao inventar numeros** - Todos os dados vem de `lib/data.ts` (consolidado de `docs/` e `data/`)
 2. **Sem integracoes externas** - Dados estaticos
 3. **Transparencia** - Organico marcado como indicador secundario
 4. **Mobile-first** - Layout responsivo
+
+## Branding
+
+- Logo: `public/brand/monicametran-logo.jpg` (tambem exibida no Slide 0 - Hero)
+- Favicon: `app/favicon.ico` (atualizado para refletir a marca)
 
 ## Deploy
 
