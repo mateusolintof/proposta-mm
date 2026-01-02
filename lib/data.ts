@@ -95,10 +95,8 @@ export const organicoComparativo = {
 
 // Benchmarks de mercado (Fashion/Beauty como proxy para joias)
 export const benchmarks = {
-  ctr: { min: 0.7, max: 1.2, label: "CTR Fashion/Beauty" },
-  // CPC mais aderente ao objetivo do projeto: tráfego/visitas ao perfil no Instagram (Brasil)
-  // Nicho: joias premium (proxy: Consumer Goods) — Fonte: Superads (BRL; Jul–Dez/2025; sem conversão)
-  cpc: { min: 0.1972696802, max: 0.3789753556, label: "CPC Tráfego IG (BR) — Consumer Goods (R$)" },
+  ctr: { min: 0.7, max: 1.5, label: "CTR (referência)" },
+  cpc: { min: 0.35, max: 0.60, label: "CPC (R$)" },
   custoConversa: { min: 8.14, max: 32.55, label: "Custo/Conversa (R$)" },
   cpm: { valor: 18.77, label: "CPM Brasil (R$)" },
 };
@@ -107,15 +105,15 @@ export const benchmarks = {
 export const benchmarksComFontes = {
   ctr: {
     min: 0.7,
-    max: 1.2,
-    fonte: "Superads Fashion/Beauty 2025",
-    referencia: "L887-L891"
+    max: 1.5,
+    fonte: "Referência interna (definição do projeto)",
+    referencia: "Deck: parâmetros definidos (02/01/2026)"
   },
   cpc: {
-    min: 0.1972696802,
-    max: 0.3789753556,
-    fonte: "Superads — BR + Instagram + Traffic + Consumer Goods (BRL; Jul–Dez/2025)",
-    referencia: "docs/benchmarks_joias_br.md"
+    min: 0.35,
+    max: 0.60,
+    fonte: "Referência interna (definição do projeto)",
+    referencia: "Deck: parâmetros definidos (02/01/2026)"
   },
   custoConversa: {
     min: 8.14,

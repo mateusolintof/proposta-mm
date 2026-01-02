@@ -7,6 +7,7 @@ import {
   audienciaTotal,
   evolucaoMensal,
   benchmarks,
+  benchmarksComFontes,
   formatCurrency,
   formatNumber,
   formatPercent,
@@ -50,7 +51,7 @@ const kpis = [
     value: estatisticasHero.ctrMedio,
     format: "percent",
     icon: TrendingUp,
-    sublabel: "vs benchmark 0,7-1,2%",
+    sublabel: "vs benchmark 0,7-1,5%",
   },
 ];
 
@@ -225,6 +226,9 @@ export function SlideResultados() {
             higherIsBetter={false}
           />
         </div>
+        <p className="mt-3 text-[11px] text-[var(--text-muted)]">
+          Fonte: {benchmarksComFontes.ctr.fonte} ({benchmarksComFontes.ctr.referencia})
+        </p>
       </motion.div>
 
       {/* Regioes */}
