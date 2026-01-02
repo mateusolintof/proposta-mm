@@ -1,11 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SlideContent } from "./SlideContainer";
 
 export function SlideHero() {
   return (
     <SlideContent className="flex flex-col items-center justify-center text-center h-full">
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="mb-10"
+      >
+        <div className="rounded-full p-[1px] bg-[var(--gradient-gold)] glow-gold-sm">
+          <div className="rounded-full bg-[var(--bg-primary)] p-1">
+            <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden">
+              <Image
+                src="/brand/monicametran-logo.jpg"
+                alt="Monica Metran"
+                fill
+                sizes="(max-width: 768px) 64px, 80px"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Linha decorativa superior */}
       <motion.div
         initial={{ scaleX: 0 }}
