@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 import { SlideContent, SlideHeader } from "./SlideContainer";
 import {
   estatisticasHero,
+  audienciaTotal,
   evolucaoMensal,
   benchmarks,
   formatCurrency,
+  formatNumber,
   formatPercent,
+  regioes,
 } from "@/lib/data";
 import {
   ComposedChart,
@@ -17,7 +20,6 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Cell,
 } from "recharts";
 import { TrendingUp, Users, MessageCircle, Target } from "lucide-react";
 
@@ -200,28 +202,111 @@ export function SlideResultados() {
         <div className="space-y-4">
           <BenchmarkBar
             label="CTR (Click-Through Rate)"
-            value={3.33}
+            value={audienciaTotal.ctrLink}
             benchmarkMin={benchmarks.ctr.min}
             benchmarkMax={benchmarks.ctr.max}
             suffix="%"
-            isAbove={true}
+            higherIsBetter
           />
           <BenchmarkBar
-            label="CPC (Custo por Clique)"
-            value={0.34}
+            label="CPC (Tráfego IG / Visitas ao perfil)"
+            value={audienciaTotal.cpcLink}
             benchmarkMin={benchmarks.cpc.min}
             benchmarkMax={benchmarks.cpc.max}
             prefix="R$ "
-            isAbove={false}
+            higherIsBetter={false}
           />
           <BenchmarkBar
             label="CPM (Custo por Mil)"
-            value={11.42}
+            value={audienciaTotal.cpmCalculado}
             benchmarkMin={benchmarks.cpm.valor}
             benchmarkMax={benchmarks.cpm.valor}
             prefix="R$ "
-            isAbove={false}
+            higherIsBetter={false}
           />
+        </div>
+      </motion.div>
+
+      {/* Regioes */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9 }}
+        className="mb-12"
+      >
+        <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+          Performance por Regiao (Dez/2025)
+        </h3>
+        <p className="text-sm text-[var(--text-secondary)] mb-4">
+          Recorte do ultimo mes do periodo. Serve como direcionamento de alocacao (nao atribuicao de vendas).
+        </p>
+
+        <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-[720px] w-full text-left">
+              <thead className="bg-[var(--bg-card)]/60">
+                <tr className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  <th className="p-3">UF</th>
+                  <th className="p-3">Estado</th>
+                  <th className="p-3">CTR</th>
+                  <th className="p-3">CPC</th>
+                  <th className="p-3">Impressões</th>
+                  <th className="p-3">Cliques</th>
+                  <th className="p-3">Status</th>
+                </tr>
+              </thead>
+              <tbody className="text-xs">
+                {regioes.map((r) => (
+                  <tr key={r.uf} className="border-t border-white/5">
+                    <td className="p-3 font-medium text-[var(--text-primary)]">{r.uf}</td>
+                    <td className="p-3 text-[var(--text-secondary)]">{r.estado}</td>
+                    <td className="p-3 text-white">{formatPercent(r.ctr)}</td>
+                    <td className="p-3 text-[var(--text-secondary)]">{formatCurrency(r.cpc)}</td>
+                    <td className="p-3 text-[var(--text-secondary)]">{formatNumber(r.impressoes)}</td>
+                    <td className="p-3 text-[var(--text-secondary)]">{formatNumber(r.cliques)}</td>
+                    <td className="p-3">
+                      <span
+                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] border ${
+                          r.status === "top"
+                            ? "border-[var(--success)]/30 text-[var(--success)]"
+                            : "border-[var(--gold-dark)]/40 text-[var(--gold-primary)]"
+                        }`}
+                      >
+                        {r.status === "top" ? "Top" : "Baseline"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl p-4">
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-1">
+              Estados Top
+            </p>
+            <p className="text-sm text-[var(--text-primary)] font-medium">
+              SP, SC e PR com CTR 5%+
+            </p>
+          </div>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl p-4">
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-1">
+              Maior volume
+            </p>
+            <p className="text-sm text-[var(--text-primary)] font-medium">
+              GO concentrou impressões, mas com CTR menor
+            </p>
+          </div>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl p-4">
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-1">
+              Direcionamento
+            </p>
+            <p className="text-sm text-[var(--text-primary)] font-medium">
+              Rebalancear budget para os estados top performers
+            </p>
+          </div>
         </div>
       </motion.div>
 
@@ -229,16 +314,21 @@ export function SlideResultados() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1 }}
-        className="bg-gradient-to-r from-[var(--gold-muted)] to-transparent border border-[var(--gold-dark)]/30 rounded-xl p-6 text-center"
+        transition={{ delay: 1.1 }}
+        className="relative overflow-hidden bg-[var(--bg-secondary)] border border-[var(--gold-primary)]/25 rounded-2xl p-6 text-center shadow-[0_0_30px_rgba(212,175,55,0.18)]"
       >
-        <p className="text-sm text-[var(--text-secondary)] mb-2">Destaque do Periodo</p>
-        <p className="text-xl md:text-2xl font-bold text-[var(--gold-primary)]">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[var(--gold-muted)] via-transparent to-transparent" />
+        <div className="relative">
+          <div className="inline-flex items-center justify-center px-3 py-1 rounded-full border border-[var(--gold-dark)]/40 bg-[var(--bg-card)]/40 backdrop-blur-sm text-[10px] uppercase tracking-[0.22em] text-[var(--gold-light)] mb-3">
+            DESTAQUE DO PERÍODO
+          </div>
+          <p className="text-xl md:text-2xl font-bold text-[var(--gold-primary)]">
           Custo por conversa reduziu {estatisticasHero.reducaoCusto}%
-        </p>
-        <p className="text-sm text-[var(--text-muted)] mt-2">
-          De R$ 24,42 para R$ 12,99 no segundo trimestre
-        </p>
+          </p>
+          <p className="text-sm text-[var(--text-secondary)] mt-2">
+            De R$ 24,42 para R$ 12,99 no segundo trimestre
+          </p>
+        </div>
       </motion.div>
     </SlideContent>
   );
@@ -251,7 +341,7 @@ interface BenchmarkBarProps {
   benchmarkMax: number;
   prefix?: string;
   suffix?: string;
-  isAbove: boolean;
+  higherIsBetter?: boolean;
 }
 
 function BenchmarkBar({
@@ -261,8 +351,30 @@ function BenchmarkBar({
   benchmarkMax,
   prefix = "",
   suffix = "",
-  isAbove,
+  higherIsBetter = true,
 }: BenchmarkBarProps) {
+  const isRange = benchmarkMin !== benchmarkMax;
+  const min = Math.min(benchmarkMin, benchmarkMax);
+  const max = Math.max(benchmarkMin, benchmarkMax);
+
+  const status = (() => {
+    if (isRange) {
+      if (value < min) return higherIsBetter ? "bad" : "good";
+      if (value > max) return higherIsBetter ? "good" : "bad";
+      return "neutral";
+    }
+
+    if (value === min) return "neutral";
+    if (value < min) return higherIsBetter ? "bad" : "good";
+    return higherIsBetter ? "good" : "bad";
+  })();
+
+  const statusLabel = (() => {
+    if (status === "neutral") return "Dentro do benchmark";
+    if (status === "good") return higherIsBetter ? "Acima do mercado" : "Abaixo do mercado";
+    return higherIsBetter ? "Abaixo do mercado" : "Acima do mercado";
+  })();
+
   // Calculate position relative to benchmark range
   const maxValue = Math.max(value, benchmarkMax) * 1.2;
   const valuePercent = (value / maxValue) * 100;
@@ -292,7 +404,11 @@ function BenchmarkBar({
           animate={{ width: `${valuePercent}%` }}
           transition={{ duration: 1, delay: 0.5 }}
           className={`h-full rounded-full ${
-            isAbove ? "bg-[var(--success)]" : "bg-[var(--gold-primary)]"
+            status === "good"
+              ? "bg-[var(--success)]"
+              : status === "bad"
+                ? "bg-red-500/80"
+                : "bg-[var(--gold-primary)]"
           }`}
         />
       </div>
@@ -301,8 +417,16 @@ function BenchmarkBar({
           Benchmark: {prefix}{benchmarkMin.toFixed(2).replace(".", ",")}{suffix}
           {benchmarkMin !== benchmarkMax && ` - ${prefix}${benchmarkMax.toFixed(2).replace(".", ",")}${suffix}`}
         </span>
-        <span className={`text-xs font-medium ${isAbove ? "text-[var(--success)]" : "text-[var(--gold-primary)]"}`}>
-          {isAbove ? "Acima do mercado" : "Abaixo do mercado"}
+        <span
+          className={`text-xs font-medium ${
+            status === "good"
+              ? "text-[var(--success)]"
+              : status === "bad"
+                ? "text-red-300"
+                : "text-[var(--gold-primary)]"
+          }`}
+        >
+          {statusLabel}
         </span>
       </div>
     </div>
