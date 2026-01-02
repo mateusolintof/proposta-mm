@@ -8,7 +8,7 @@ Este documento consolida toda a analise de criativos realizada para o projeto de
 | Fonte | Tipo | Periodo | Criativos |
 |-------|------|---------|-----------|
 | `meta-audiencia-mensal.xlsx` | Planilha Meta Ads | Jul-Dez/2025 | 42 unicos |
-| `meta-mensagens-mensal.xlsx` | Planilha Meta Ads | Ago-Dez/2025 | 32 unicos |
+| `meta-mensagens-mensal.xlsx` | Planilha Meta Ads | Ago-Dez/2025 | 31 unicos *(no export atual)* |
 | `instagram-organico-mensal.csv` | Export Instagram | Jul-Dez/2025 | 208 posts |
 | Relatorios PDF mensais | Meta Ads Manager | Jul-Dez/2025 | Consolidado |
 
@@ -16,6 +16,7 @@ Este documento consolida toda a analise de criativos realizada para o projeto de
 - **Top performers audiencia:** Ordenados por CTR (click-through rate)
 - **Top performers mensagens:** Ordenados por custo/conversa (menor = melhor)
 - **Corte:** Top 10 de cada categoria para analise detalhada
+- **Regra de leitura (amostra):** para entrar como “destaque principal” no deck, o criativo precisa ter volume suficiente (evita distorcao por gasto/conversas muito baixos)
 
 ### 1.3 Metricas analisadas
 | Metrica | Formula | Uso |
@@ -24,6 +25,21 @@ Este documento consolida toda a analise de criativos realizada para o projeto de
 | CPC | gasto / cliques | Custo por clique |
 | Custo/Visita | gasto / visitas ao perfil | Eficiencia em trazer visitantes |
 | Custo/Conversa | gasto / conversas iniciadas | Eficiencia em gerar leads WhatsApp |
+
+### 1.4 Criterio de amostra (para destaque no deck)
+Este criterio nao muda os dados (continua tudo listado), apenas muda **o que entra como “campeao”** no slide Top Performers.
+
+- **Audiencia (CTR):** considerar como “amostra OK” quando **investido >= R$ 50**, **impressoes >= 2.000** e **cliques >= 100**
+- **Mensagens (custo/conversa):** considerar como “amostra OK” quando **investido >= R$ 50** e **conversas >= 10**
+
+Quando ficar abaixo disso, o criativo aparece como **baixa amostra** (referencia), nao como “melhor absoluto”.
+
+### 1.5 Assets visuais (capas reais)
+Os exports do Meta nao trazem a imagem do criativo. Para exibir capas reais no deck:
+
+- o projeto mapeia `dd/mm` do nome do anuncio para o **link permanente** no `instagram-organico-mensal.csv`
+- as thumbs sao baixadas via `og:image` e salvas em `public/ads/` no padrao `mm-ig-{shortcode}.jpg`
+- scripts: `scripts/generate_creatives.py` e `scripts/download_instagram_thumbs.py`
 
 ---
 
@@ -54,7 +70,7 @@ Total analisado: **42 criativos unicos**
 
 ## 3. Criativos de Mensagens (Top 10 por Custo/Conversa)
 
-Total analisado: **32 criativos unicos**
+Total analisado: **31 criativos unicos** *(no export atual)*
 
 | # | Criativo | Campanha | Mes | Tipo | CTR | Custo/Conv | Conversas | Investido | Destaque |
 |---|----------|----------|-----|------|-----|------------|-----------|-----------|----------|
@@ -182,7 +198,7 @@ Total analisado: **32 criativos unicos**
 | Conversas WhatsApp | 494 |
 | CTR medio | 3,33% |
 | Reducao custo/conversa | 47% |
-| Criativos analisados | 74 |
+| Criativos analisados | 73 *(42 audiencia + 31 mensagens no export atual)* |
 | Meses analisados | 6 |
 
 ### 7.2 Comparativo com benchmarks
@@ -210,7 +226,7 @@ Total analisado: **32 criativos unicos**
 | Arquivo | Localizacao | Conteudo |
 |---------|-------------|----------|
 | Dados brutos audiencia | `data/meta-audiencia-mensal.xlsx` | 42 criativos |
-| Dados brutos mensagens | `data/meta-mensagens-mensal.xlsx` | 32 criativos |
+| Dados brutos mensagens | `data/meta-mensagens-mensal.xlsx` | 31 criativos *(unicos no export atual)* |
 | Dados organico | `data/instagram-organico-mensal.csv` | 208 posts |
 | Relatorios PDF | `data/relatorio-meta-2025-*.pdf` | 6 meses |
 | Dados consolidados | `lib/data.ts` | Arrays TypeScript |

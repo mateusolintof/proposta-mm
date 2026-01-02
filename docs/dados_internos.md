@@ -3,10 +3,10 @@
 ## Período e fontes
 - **Período coberto pelos arquivos:** Jul–Dez/2025 (campanhas de audiência) e Ago–Dez/2025 (campanhas de mensagem).
 - **Fontes (arquivos enviados):**
-  - `campanhas-audiencia.xlsx` (Meta Ads — campanhas de audiência / tráfego)
-  - `campanha-audiencia-atualizado (1).xlsx` (Meta Ads — audiência com **visitas ao perfil**)
-  - `campanhas-mensagem.xlsx` (Meta Ads — campanhas de mensagens/WhatsApp)
-  - `dados-feed-organico.csv` (Instagram orgânico — feed)
+  - `meta-audiencia-mensal.xlsx` (Meta Ads — campanhas de audiência / tráfego + visitas ao perfil)
+  - `meta-mensagens-mensal.xlsx` (Meta Ads — campanhas de mensagens/WhatsApp)
+  - `instagram-organico-mensal.csv` (Instagram orgânico — feed)
+  - `relatorio-meta-2025-*.pdf` (relatórios mensais Meta Ads — Jul–Dez/2025)
 
 ---
 

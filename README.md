@@ -56,11 +56,16 @@ MM-Renovacao/
 │   └── useSwipe.ts
 ├── lib/
 │   ├── data.ts              # Dados consolidados
+│   ├── creatives.generated.ts # Criativos completos (gerado a partir de data/)
 │   └── utils.ts             # Utilities
 ├── docs/                    # Fonte de verdade
+│   ├── analise-criativos.md
+│   ├── criativos-assets.md
 │   ├── dados_internos.md
+│   ├── benchmarks_joias_br.md
 │   ├── benchmarks_report.md
 │   └── proposta-valor.md
+├── scripts/                 # Scripts offline (pipeline de dados/assets)
 ├── data/                    # Arquivos brutos (referencia/lastro)
 │   ├── relatorio-meta-2025-{07-12}.pdf  # 6 PDFs mensais
 │   ├── meta-audiencia-mensal.xlsx
@@ -120,6 +125,13 @@ npm run start
 ## Dados
 
 Fonte de verdade: `lib/data.ts` (consolidado de `docs/` e `data/`):
+
+### Criativos (capas reais)
+- Lista completa (exports): `lib/creatives.generated.ts` (gerado offline)
+- Imagens: `public/ads/mm-ig-{shortcode}.jpg`
+- Pipeline:
+  - `python3 scripts/generate_creatives.py`
+  - `python3 scripts/download_instagram_thumbs.py`
 
 ### Meta Ads - Audiencia (Jul-Dez/2025)
 - Gasto total: R$ 8.830,15

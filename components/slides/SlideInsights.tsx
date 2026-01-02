@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SlideContent, SlideHeader } from "./SlideContainer";
-import { padroesIdentificados, insightsConsolidados } from "@/lib/data";
+import { padroesIdentificados, insightsConsolidados, estatisticasHero } from "@/lib/data";
 import {
   Play,
   Layers,
@@ -27,7 +27,7 @@ export function SlideInsights() {
   return (
     <SlideContent className="overflow-y-auto h-full py-8 px-4 md:px-8">
       <SlideHeader
-        badge="Analise de 74 Criativos"
+        badge={`Analise de ${estatisticasHero.criativosAnalisados} Criativos`}
         title="Insights & Padroes"
         subtitle="O que aprendemos e como aplicar em 2026"
       />
