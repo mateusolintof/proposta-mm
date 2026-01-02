@@ -68,7 +68,7 @@ const formatValue = (value: number, format: string) => {
 
 export function SlideResultados() {
   return (
-    <SlideContent className="overflow-y-auto h-full py-8 px-4 md:px-8">
+    <SlideContent className="overflow-y-auto h-full pt-6 pb-24 px-4 md:py-8 md:px-8">
       <SlideHeader
         badge="Jul-Dez 2025"
         title="Resultados"

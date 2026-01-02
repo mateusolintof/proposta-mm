@@ -31,7 +31,7 @@ function PriceCard({
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
-      className={`relative p-6 md:p-8 rounded-2xl flex flex-col ${
+      className={`relative p-5 sm:p-6 md:p-8 rounded-2xl flex flex-col ${
         highlighted
           ? "bg-gradient-to-br from-[var(--gold-muted)] to-[var(--bg-secondary)] border-2 border-[var(--gold-primary)]"
           : "bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/30"
@@ -46,12 +46,12 @@ function PriceCard({
         </div>
       )}
 
-      <h3 className="text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4">
+      <h3 className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4">
         {title}
       </h3>
 
       <div className="mb-4">
-        <span className="text-3xl md:text-4xl font-bold text-[var(--gold-primary)]">
+        <span className="text-3xl sm:text-3xl md:text-4xl font-bold text-[var(--gold-primary)]">
           {formatCurrency(price)}
         </span>
         <span className="text-[var(--text-muted)] ml-2 text-sm">{period}</span>
@@ -100,7 +100,7 @@ export function SlideProposta() {
   )}`;
 
   return (
-    <SlideContent className="overflow-y-auto h-full py-8 px-4 md:px-8">
+    <SlideContent className="overflow-y-auto h-full pt-6 pb-24 px-4 md:py-8 md:px-8">
       <SlideHeader
         badge="Proximos Passos"
         title="Proposta"

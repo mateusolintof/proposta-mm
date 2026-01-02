@@ -223,7 +223,7 @@ export function SlideCriativos() {
   }, []);
 
   return (
-    <SlideContent className="overflow-y-auto h-full py-8 px-4 md:px-8">
+    <SlideContent className="overflow-y-auto h-full pt-6 pb-24 px-4 md:py-8 md:px-8">
       <SlideHeader
         badge={`${estatisticasHero.criativosAnalisados} Criativos (${criativosAudienciaTodos.length} audiência + ${criativosMensagensTodos.length} mensagens)`}
         title="Top Performers"
@@ -235,7 +235,7 @@ export function SlideCriativos() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="flex justify-center gap-2 mb-8"
+        className="flex flex-wrap justify-center gap-2 mb-6 md:mb-8"
       >
         {[
           { key: "todos", label: "Todos", icon: Star },
@@ -245,7 +245,7 @@ export function SlideCriativos() {
           <button
             key={tab.key}
             onClick={() => setFilter(tab.key as FilterType)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all ${
+            className={`flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm transition-all ${
               filter === tab.key
                 ? "bg-[var(--gold-primary)] text-[var(--bg-primary)]"
                 : "bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)]"
@@ -283,7 +283,7 @@ export function SlideCriativos() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8"
+        className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-8"
       >
         {criativosFiltrados.map((criativo, index) => (
           <CriativoCard key={criativo.id} criativo={criativo} index={index} />
@@ -360,7 +360,7 @@ function CriativoCard({ criativo, index }: CriativoCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 + index * 0.1 }}
-      className="group relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20"
+      className="group relative aspect-[16/11] min-[420px]:aspect-square rounded-xl overflow-hidden bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20"
     >
       {/* Image */}
       <div
@@ -407,7 +407,7 @@ function CriativoCard({ criativo, index }: CriativoCardProps) {
         <p className="text-xs text-[var(--gold-light)] uppercase tracking-wider mb-1">
           {criativo.periodo} • {formatRangeDDMM(criativo.inicioRelatorio, criativo.fimRelatorio)}
         </p>
-        <h4 className="text-sm font-semibold text-white mb-2 line-clamp-2">
+        <h4 className="text-xs sm:text-sm font-semibold text-white mb-2 line-clamp-2">
           {criativo.nome}
         </h4>
 
@@ -417,7 +417,7 @@ function CriativoCard({ criativo, index }: CriativoCardProps) {
             <p className="text-[10px] text-[var(--text-muted)] uppercase">
               {criativo.metricaPrincipal.label}
             </p>
-            <p className="text-lg font-bold text-white">
+            <p className="text-base sm:text-lg font-bold text-white">
               {formatMetrica(
                 criativo.metricaPrincipal.valor,
                 criativo.metricaPrincipal.format
@@ -428,7 +428,7 @@ function CriativoCard({ criativo, index }: CriativoCardProps) {
             <p className="text-[10px] text-[var(--text-muted)] uppercase">
               {criativo.metricaSecundaria.label}
             </p>
-            <p className="text-sm text-[var(--text-secondary)]">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
               {formatMetrica(
                 criativo.metricaSecundaria.valor,
                 criativo.metricaSecundaria.format
