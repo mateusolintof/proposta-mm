@@ -96,7 +96,7 @@ export function SlideResultados() {
                 {kpi.label}
               </span>
             </div>
-            <p className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-1">
+            <p className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-1">
               {formatValue(kpi.value, kpi.format)}
             </p>
             <p className="text-xs text-[var(--text-secondary)]">{kpi.sublabel}</p>
