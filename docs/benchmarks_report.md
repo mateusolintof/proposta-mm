@@ -1,6 +1,6 @@
 
 
-# Benchmarks de mercado (Brasil) — Nicho joias/luxo no Meta Ads (Dez/2025)
+# Benchmarks de mercado (Brasil) — Nicho joias/luxo no Meta Ads (Atualizado Jan/2026)
 
 Este documento reúne **benchmarks recentes** (2025) para contextualizar performance de campanhas de **joias/luxo** no ecossistema Meta (Facebook/Instagram), com foco em métricas usadas no projeto: **CTR, CPC, CPM e custo por conversa (Click-to-Message/WhatsApp)**.
 
@@ -12,19 +12,25 @@ Este documento reúne **benchmarks recentes** (2025) para contextualizar perform
 ### 1.2 CPM (Brasil) — visão “all industries”
 - Benchmark de **CPM no Brasil** (Dez/2024–Dez/2025): **média US$ 3,46** no período【718252449514790†L49-L53】.
 
-### 1.3 Benchmarks por vertical (Fashion/Beauty como proxy de joias)
+### 1.3 CPC (Brasil) — Tráfego no Instagram (visitas ao perfil)
+> Para campanhas com foco em **visitas ao perfil** (destino Instagram), o benchmark mais coerente é olhar CPC de **campanhas de Tráfego no Instagram** no Brasil.
+
+- Fonte: Superads Insights Tool — filtros: **Brazil + Instagram + Traffic** (CPC em USD): https://www.superads.ai/facebook-ads-costs/cpc-cost-per-click/brazil/traffic/instagram
+- Faixa 2025 (mín–máx das medianas mensais): **US$ 0,0337–US$ 0,0657** (conversão para R$ na seção 2.1).
+
+### 1.4 Benchmarks por vertical (Fashion/Beauty como proxy de joias)
 > Observação: “joias” frequentemente aparece agrupado em relatórios como parte de **fashion/beauty** (vertical visual, apelo estético, alta influência de criativo).
 
 - **CTR para Fashion/Beauty:** tipicamente **0,7%–1,2%**【83021810815061†L887-L891】.
 - **CPC para Fashion/Beauty:** tipicamente **US$ 0,40–US$ 1,20**【83021810815061†L887-L891】.
 
-### 1.4 Campanhas de Mensagens (Click-to-Message / WhatsApp) — custo por conversa
+### 1.5 Campanhas de Mensagens (Click-to-Message / WhatsApp) — custo por conversa
 - **Custo por conversa (CPCONV) em Click-to-Message:** tipicamente **US$ 1,50–US$ 6**【83021810815061†L736-L741】.
 
-### 1.5 Conversational commerce (e-commerce) — faixa adicional de referência
+### 1.6 Conversational commerce (e-commerce) — faixa adicional de referência
 - Benchmarks de e-commerce para campanhas conversacionais citam **custo por conversa US$ 2–US$ 8** em fase inicial (testing) e redução conforme otimização【367197239221234†L398-L416】.
 
-### 1.6 Taxa de câmbio (para converter benchmarks em R$)
+### 1.7 Taxa de câmbio (para converter benchmarks em R$)
 - **Média USD→BRL nos últimos 6 meses (2025): 1 USD = 5,4246 BRL**【749644029795080†L168-L172】.
 
 ---

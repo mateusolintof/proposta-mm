@@ -47,9 +47,10 @@ MM-Renovacao/
 │   ├── data.ts              # Dados consolidados (criativos, padroes, insights)
 │   └── utils.ts             # Utilities (cn, etc)
 ├── docs/                    # Fonte de verdade dos dados
-│   ├── dados_internos.md
-│   ├── benchmarks_report.md
-│   └── proposta-valor.md
+│   ├── dados_internos.md    # Tabelas mensais extraidas
+│   ├── benchmarks_report.md # Pesquisa de benchmarks com fontes
+│   ├── analise-criativos.md # Analise completa dos 74 criativos
+│   └── proposta-valor.md    # Valores da proposta
 ├── data/                    # Arquivos brutos (referencia/lastro)
 │   ├── relatorio-meta-2025-07.pdf
 │   ├── relatorio-meta-2025-08.pdf
@@ -112,6 +113,15 @@ MM-Renovacao/
 ```
 
 ## 4) Fonte de verdade de dados
+
+### 4.0 Documentacao em `docs/`
+
+| Arquivo | Conteudo | Quando usar |
+|---------|----------|-------------|
+| `dados_internos.md` | Tabelas mensais extraidas dos relatorios | Conferir numeros brutos |
+| `benchmarks_report.md` | Pesquisa de benchmarks com fontes citadas | Validar comparativos |
+| `analise-criativos.md` | Analise completa dos 74 criativos + padroes + insights | Entender metodologia e conclusoes |
+| `proposta-valor.md` | Valores da proposta comercial | Conferir precos |
 
 ### 4.1 Fonte primaria (`lib/data.ts`)
 

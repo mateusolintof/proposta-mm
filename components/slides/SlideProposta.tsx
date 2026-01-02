@@ -1,46 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Star, MessageCircle, Mail, ArrowRight, Calendar, Target, Rocket, Trophy } from "lucide-react";
+import { Check, Star, MessageCircle, Mail } from "lucide-react";
 import { SlideContent, SlideHeader } from "./SlideContainer";
 import { proposta, formatCurrency } from "@/lib/data";
-
-// Plano 30/60/90 dias
-const roadmap = [
-  {
-    periodo: "30 dias",
-    titulo: "Otimizacao",
-    icon: Target,
-    acoes: [
-      "Reativar campanhas AURA",
-      "Expandir Reels com influenciadoras",
-      "Ajustar publicos por regiao (SP, SC, PR)",
-    ],
-    meta: "Reduzir custo/conversa em 20%",
-  },
-  {
-    periodo: "60 dias",
-    titulo: "Escala",
-    icon: Rocket,
-    acoes: [
-      "Lancar Stories Origem",
-      "Testar novos influenciadores",
-      "Remarketing dinamico",
-    ],
-    meta: "Aumentar conversas em 30%",
-  },
-  {
-    periodo: "90 dias",
-    titulo: "Consolidacao",
-    icon: Trophy,
-    acoes: [
-      "Preparar campanhas Dia das Maes",
-      "Consolidar aprendizados",
-      "Definir estrategia 2o semestre",
-    ],
-    meta: "ROI positivo consolidado",
-  },
-];
 
 interface PriceCardProps {
   title: string;
@@ -48,6 +11,7 @@ interface PriceCardProps {
   period: string;
   equivalent?: string;
   savings?: string;
+  footnote: string;
   highlighted?: boolean;
   delay: number;
 }
@@ -58,6 +22,7 @@ function PriceCard({
   period,
   equivalent,
   savings,
+  footnote,
   highlighted = false,
   delay,
 }: PriceCardProps) {
@@ -66,47 +31,62 @@ function PriceCard({
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
-      className={`relative p-4 rounded-xl ${
+      className={`relative p-6 md:p-8 rounded-2xl flex flex-col ${
         highlighted
           ? "bg-gradient-to-br from-[var(--gold-muted)] to-[var(--bg-secondary)] border-2 border-[var(--gold-primary)]"
-          : "bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20"
+          : "bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/30"
       }`}
     >
       {highlighted && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-medium rounded-full bg-[var(--gold-primary)] text-[var(--bg-primary)]">
-            <Star className="w-3 h-3" />
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-full bg-[var(--gold-primary)] text-[var(--bg-primary)]">
+            <Star className="w-3.5 h-3.5" />
             Recomendado
           </span>
         </div>
       )}
 
-      <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+      <h3 className="text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4">
         {title}
       </h3>
 
-      <div className="mb-2">
-        <span className="text-2xl font-bold text-[var(--gold-primary)]">
+      <div className="mb-4">
+        <span className="text-3xl md:text-4xl font-bold text-[var(--gold-primary)]">
           {formatCurrency(price)}
         </span>
-        <span className="text-[var(--text-muted)] ml-1 text-xs">{period}</span>
+        <span className="text-[var(--text-muted)] ml-2 text-sm">{period}</span>
       </div>
 
       {equivalent && (
-        <p className="text-xs text-[var(--text-secondary)] mb-1">
+        <p className="text-sm text-[var(--text-secondary)] mb-2">
           Equivale a {equivalent}
         </p>
       )}
 
       {savings && (
-        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--success-muted)] text-[var(--success)] text-[10px] font-medium">
-          <Check className="w-2.5 h-2.5" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--success-muted)] text-[var(--success)] text-xs font-medium mb-4 w-fit">
+          <Check className="w-3 h-3" />
           {savings}
         </div>
       )}
+
+      <div className="mt-auto pt-4 border-t border-[var(--gold-dark)]/20">
+        <p className="text-xs text-[var(--text-muted)] italic">
+          {footnote}
+        </p>
+      </div>
     </motion.div>
   );
 }
+
+// Itens inclusos no servico
+const servicosInclusos = [
+  "Gestao Meta Ads",
+  "Otimizacao de publicos e criativos",
+  "Testes A/B",
+  "Relatorios e Analises Mensais",
+  "Reports Semanais",
+];
 
 export function SlideProposta() {
   const whatsappUrl = `https://wa.me/5562998621000?text=${encodeURIComponent(
@@ -124,83 +104,27 @@ export function SlideProposta() {
       <SlideHeader
         badge="Proximos Passos"
         title="Proposta"
-        subtitle="Plano de acao e investimento para 2026"
+        subtitle="Investimento para gestao de trafego pago em 2026"
       />
 
-      {/* Roadmap 30/60/90 */}
+      {/* Pricing cards */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className="mb-10"
       >
-        <div className="flex items-center gap-2 mb-4">
-          <Calendar className="w-5 h-5 text-[var(--gold-primary)]" />
-          <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-            Plano 30/60/90 Dias
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {roadmap.map((fase, index) => (
-            <motion.div
-              key={fase.periodo}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + index * 0.1 }}
-              className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl p-4"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <div className="p-2 rounded-lg bg-[var(--gold-muted)]">
-                  <fase.icon className="w-4 h-4 text-[var(--gold-primary)]" />
-                </div>
-                <div>
-                  <p className="text-xs text-[var(--gold-primary)] uppercase tracking-wider">
-                    {fase.periodo}
-                  </p>
-                  <p className="text-sm font-semibold text-[var(--text-primary)]">
-                    {fase.titulo}
-                  </p>
-                </div>
-              </div>
-
-              <ul className="space-y-2 mb-3">
-                {fase.acoes.map((acao, i) => (
-                  <li key={i} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
-                    <Check className="w-3 h-3 mt-0.5 text-[var(--success)] flex-shrink-0" />
-                    {acao}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="pt-3 border-t border-[var(--gold-dark)]/10">
-                <p className="text-xs text-[var(--text-muted)]">Meta:</p>
-                <p className="text-sm font-medium text-[var(--gold-primary)]">
-                  {fase.meta}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Pricing cards */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="mb-8"
-      >
-        <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
+        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-6">
           Investimento
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
           <PriceCard
             title="Mensal"
             price={proposta.mensal}
             period="/mes"
-            delay={0.6}
+            footnote="* Contrato semestral"
+            delay={0.3}
           />
 
           <PriceCard
@@ -209,8 +133,9 @@ export function SlideProposta() {
             period="em 3x"
             equivalent="R$ 1.300/mes"
             savings="Economia de 13%"
+            footnote="* Contrato trimestral"
             highlighted
-            delay={0.7}
+            delay={0.4}
           />
 
           <PriceCard
@@ -219,68 +144,64 @@ export function SlideProposta() {
             period="em 6x"
             equivalent="R$ 1.000/mes"
             savings="Economia de 33%"
-            delay={0.8}
+            footnote="* Contrato semestral"
+            delay={0.5}
           />
         </div>
       </motion.div>
 
-      {/* Incluso / Nao incluso - versao compacta */}
+      {/* Incluso */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9 }}
-        className="grid grid-cols-2 gap-4 mb-8"
+        transition={{ delay: 0.6 }}
+        className="mb-10"
       >
-        <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl p-4">
-          <h4 className="flex items-center gap-2 text-xs font-semibold text-[var(--success)] mb-2">
-            <Check className="w-3 h-3" />
+        <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/30 rounded-2xl p-6 md:p-8">
+          <h4 className="flex items-center gap-2 text-lg font-bold text-[var(--success)] mb-5">
+            <Check className="w-5 h-5" />
             Incluso
           </h4>
-          <ul className="space-y-1 text-xs text-[var(--text-secondary)]">
-            <li>Gestao Meta Ads</li>
-            <li>Otimizacao de publicos</li>
-            <li>Testes A/B</li>
-            <li>Relatorios mensais</li>
-          </ul>
-        </div>
-
-        <div className="bg-[var(--bg-secondary)] border border-[var(--gold-dark)]/20 rounded-xl p-4">
-          <h4 className="text-xs font-semibold text-[var(--text-muted)] mb-2">
-            Nao incluso
-          </h4>
-          <ul className="space-y-1 text-xs text-[var(--text-muted)]">
-            <li>Producao de fotos/videos</li>
-            <li>Budget de midia</li>
-            <li>Google/TikTok Ads</li>
-            <li>Landing pages</li>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {servicosInclusos.map((servico, index) => (
+              <motion.li
+                key={servico}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.7 + index * 0.1 }}
+                className="flex items-center gap-3 text-sm md:text-base text-[var(--text-secondary)]"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--gold-primary)]" />
+                {servico}
+              </motion.li>
+            ))}
           </ul>
         </div>
       </motion.div>
 
-      {/* CTA Buttons */}
+      {/* CTA Buttons - menor destaque */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.9 }}
         className="flex flex-col sm:flex-row gap-3 justify-center"
       >
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[var(--gold-primary)] text-[var(--bg-primary)] font-semibold transition-all duration-300 hover:scale-105"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[var(--gold-primary)]/80 text-[var(--bg-primary)] text-sm font-medium transition-all duration-300 hover:bg-[var(--gold-primary)]"
         >
-          <MessageCircle className="w-4 h-4" />
-          Falar no WhatsApp
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <MessageCircle className="w-3.5 h-3.5" />
+          WhatsApp
         </a>
 
         <a
           href={emailUrl}
-          className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-[var(--gold-dark)] text-[var(--text-primary)] font-semibold transition-all duration-300 hover:border-[var(--gold-primary)] hover:bg-[var(--gold-muted)]"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-[var(--gold-dark)]/50 text-[var(--text-secondary)] text-sm font-medium transition-all duration-300 hover:border-[var(--gold-primary)] hover:text-[var(--text-primary)]"
         >
-          <Mail className="w-4 h-4" />
-          Enviar Email
+          <Mail className="w-3.5 h-3.5" />
+          Email
         </a>
       </motion.div>
 
@@ -288,8 +209,8 @@ export function SlideProposta() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="mt-6 text-center text-xs text-[var(--text-muted)]"
+        transition={{ delay: 1 }}
+        className="mt-4 text-center text-xs text-[var(--text-muted)]"
       >
         <span>{proposta.contato.whatsapp}</span>
         <span className="mx-2">|</span>
