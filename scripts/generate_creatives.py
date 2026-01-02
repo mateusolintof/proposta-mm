@@ -117,6 +117,11 @@ def parse_ddmm_from_text(text: str) -> Optional[tuple[int, int]]:
     return day, month
 
 
+def extract_instagram_shortcode(url: str) -> Optional[str]:
+    m = re.search(r"instagram\.com/(?:p|reel)/([^/?#]+)/?", url)
+    return m.group(1) if m else None
+
+
 @dataclasses.dataclass(frozen=True)
 class InstagramPost:
     published_at: dt.datetime
@@ -131,8 +136,7 @@ class InstagramPost:
 
     @property
     def shortcode(self) -> Optional[str]:
-        m = re.search(r"instagram\.com/(?:p|reel)/([^/]+)/", self.url)
-        return m.group(1) if m else None
+        return extract_instagram_shortcode(self.url)
 
 
 def load_instagram_posts(path: Path) -> dict[str, list[InstagramPost]]:
@@ -163,6 +167,50 @@ def load_instagram_posts(path: Path) -> dict[str, list[InstagramPost]]:
             posts_by_date[post.date_key].append(post)
 
     return posts_by_date
+
+
+def load_manual_overrides(path: Path) -> dict[Categoria, dict[str, str]]:
+    if not path.exists():
+        return {"audiencia": {}, "mensagens": {}}
+
+    data = json.loads(path.read_text(encoding="utf-8"))
+    overrides: dict[Categoria, dict[str, str]] = {"audiencia": {}, "mensagens": {}}
+    for categoria in ("audiencia", "mensagens"):
+        raw = data.get(categoria)
+        if not isinstance(raw, dict):
+            continue
+        cleaned: dict[str, str] = {}
+        for key, value in raw.items():
+            if not key or not value:
+                continue
+            cleaned[str(key).strip()] = str(value).strip()
+        overrides[categoria] = cleaned
+
+    return overrides
+
+
+def apply_instagram_override(record: dict[str, Any], url: str) -> None:
+    shortcode = extract_instagram_shortcode(url)
+    record["instagramUrl"] = url
+    record["instagramShortcode"] = shortcode
+    record["thumbSrc"] = f"/ads/mm-ig-{shortcode}.jpg" if shortcode else None
+
+
+def ensure_unique_ids(records: list[dict[str, Any]]) -> None:
+    used: set[str] = set()
+    for record in records:
+        base = str(record.get("id") or "")
+        if not base:
+            continue
+
+        candidate = base
+        counter = 2
+        while candidate in used:
+            candidate = f"{base}--{counter}"
+            counter += 1
+
+        record["id"] = candidate
+        used.add(candidate)
 
 
 def score_post(
@@ -341,6 +389,7 @@ def generate_audience_creatives(posts_by_date: dict[str, list[InstagramPost]]) -
 
     # ordena por CTR desc (para inspeção humana)
     out.sort(key=lambda x: x["ctr"], reverse=True)
+    ensure_unique_ids(out)
     return out
 
 
@@ -428,6 +477,7 @@ def generate_messages_creatives(posts_by_date: dict[str, list[InstagramPost]]) -
             x["custoConversa"] if x["custoConversa"] is not None else 0,
         )
     )
+    ensure_unique_ids(out)
     return out
 
 
@@ -448,7 +498,9 @@ def ts_literal(value: Any) -> str:
 def write_ts_file(out_path: Path, aud: list[dict[str, Any]], msg: list[dict[str, Any]]) -> None:
     lines: list[str] = []
     lines.append("// Arquivo gerado automaticamente a partir dos exports em data/")
-    lines.append("// Fonte: data/meta-audiencia-mensal.xlsx, data/meta-mensagens-mensal.xlsx, data/instagram-organico-mensal.csv")
+    lines.append(
+        "// Fonte: data/meta-audiencia-mensal.xlsx, data/meta-mensagens-mensal.xlsx, data/instagram-organico-mensal.csv, data/creative_overrides.json"
+    )
     lines.append("// Edite via scripts/generate_creatives.py; não altere manualmente este arquivo.\n")
 
     lines.append("export type CriativoCategoria = \"audiencia\" | \"mensagens\";")
@@ -518,8 +570,23 @@ def main() -> int:
     args = parser.parse_args()
 
     posts_by_date = load_instagram_posts(DATA_DIR / "instagram-organico-mensal.csv")
+    overrides = load_manual_overrides(DATA_DIR / "creative_overrides.json")
     aud = generate_audience_creatives(posts_by_date)
     msg = generate_messages_creatives(posts_by_date)
+
+    for record in aud:
+        override = overrides["audiencia"].get(record.get("anuncio") or "") or overrides["audiencia"].get(
+            record.get("nome") or ""
+        )
+        if override:
+            apply_instagram_override(record, override)
+
+    for record in msg:
+        override = overrides["mensagens"].get(record.get("anuncio") or "") or overrides["mensagens"].get(
+            record.get("nome") or ""
+        )
+        if override:
+            apply_instagram_override(record, override)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -529,7 +596,7 @@ def main() -> int:
     print(f"- Audiencia: {len(aud)} criativos")
     print(f"- Mensagens: {len(msg)} criativos")
     mapped = sum(1 for x in aud if x.get('instagramUrl')) + sum(1 for x in msg if x.get('instagramUrl'))
-    print(f"- Com instagramUrl mapeado por data: {mapped}")
+    print(f"- Com instagramUrl mapeado (data/overrides): {mapped}")
     return 0
 
 

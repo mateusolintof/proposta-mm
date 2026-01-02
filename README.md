@@ -129,6 +129,7 @@ Fonte de verdade: `lib/data.ts` (consolidado de `docs/` e `data/`):
 ### Criativos (capas reais)
 - Lista completa (exports): `lib/creatives.generated.ts` (gerado offline)
 - Imagens: `public/ads/mm-ig-{shortcode}.jpg`
+- Overrides (quando nao existe `dd/mm` no nome): `data/creative_overrides.json`
 - Pipeline:
   - `python3 scripts/generate_creatives.py`
   - `python3 scripts/download_instagram_thumbs.py`

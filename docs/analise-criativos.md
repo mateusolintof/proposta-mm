@@ -40,6 +40,7 @@ Os exports do Meta nao trazem a imagem do criativo. Para exibir capas reais no d
 - o projeto mapeia `dd/mm` do nome do anuncio para o **link permanente** no `instagram-organico-mensal.csv`
 - as thumbs sao baixadas via `og:image` e salvas em `public/ads/` no padrao `mm-ig-{shortcode}.jpg`
 - scripts: `scripts/generate_creatives.py` e `scripts/download_instagram_thumbs.py`
+- quando o anuncio nao tem `dd/mm` (ou a data fica fora do CSV Jul-Dez/2025), usamos `data/creative_overrides.json` para mapear manualmente sem “chute”
 
 ---
 

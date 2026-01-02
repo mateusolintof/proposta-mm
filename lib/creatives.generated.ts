@@ -1,5 +1,5 @@
 // Arquivo gerado automaticamente a partir dos exports em data/
-// Fonte: data/meta-audiencia-mensal.xlsx, data/meta-mensagens-mensal.xlsx, data/instagram-organico-mensal.csv
+// Fonte: data/meta-audiencia-mensal.xlsx, data/meta-mensagens-mensal.xlsx, data/instagram-organico-mensal.csv, data/creative_overrides.json
 // Edite via scripts/generate_creatives.py; não altere manualmente este arquivo.
 
 export type CriativoCategoria = "audiencia" | "mensagens";
@@ -1076,9 +1076,9 @@ export const criativosMensagensTodos = [
     cpc: 0.89,
     custoConversa: 4.66,
     influenciador: null,
-    instagramUrl: null,
-    instagramShortcode: null,
-    thumbSrc: null,
+    instagramUrl: "https://www.instagram.com/reel/DSV1Y7RD80e/",
+    instagramShortcode: "DSV1Y7RD80e",
+    thumbSrc: "/ads/mm-ig-DSV1Y7RD80e.jpg",
   },
   {
     id: "msg-video-mm-diamonds-edicao-especial-2",
@@ -1122,12 +1122,12 @@ export const criativosMensagensTodos = [
     cpc: 1.67,
     custoConversa: 7.45,
     influenciador: null,
-    instagramUrl: null,
-    instagramShortcode: null,
-    thumbSrc: null,
+    instagramUrl: "https://www.instagram.com/p/DSYaMLnD0M2/",
+    instagramShortcode: "DSYaMLnD0M2",
+    thumbSrc: "/ads/mm-ig-DSYaMLnD0M2.jpg",
   },
   {
-    id: "msg-video-colecao-aura-2",
+    id: "msg-video-colecao-aura-2--2",
     categoria: "mensagens",
     nome: "Video Colecao Aura [2]",
     anuncio: "Ad 1 - Video Colecao Aura [2]",
@@ -1242,7 +1242,7 @@ export const criativosMensagensTodos = [
     thumbSrc: "/ads/mm-ig-DOMrkW3js5f.jpg",
   },
   {
-    id: "msg-video-colecao-aura",
+    id: "msg-video-colecao-aura--2",
     categoria: "mensagens",
     nome: "Video Colecao Aura",
     anuncio: "Ad 1 - Video Colecao Aura",

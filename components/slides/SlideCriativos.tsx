@@ -100,7 +100,10 @@ export function SlideCriativos() {
     const audienciaOrdenado = [...criativosAudienciaTodos].sort((a, b) => b.ctr - a.ctr);
     const audienciaComAmostra = audienciaOrdenado.map((c) => ({ c, amostra: amostraAudiencia(c) }));
     const audienciaOk = audienciaComAmostra.filter((x) => x.amostra === "ok").map((x) => x.c);
-    const audienciaDestaques = (audienciaOk.length >= 3 ? audienciaOk : audienciaOrdenado).slice(0, 3);
+
+    const audienciaBase = audienciaOk.length >= 3 ? audienciaOk : audienciaOrdenado;
+    const audienciaComThumb = audienciaBase.filter((c) => Boolean(c.thumbSrc));
+    const audienciaDestaques = (audienciaComThumb.length >= 3 ? audienciaComThumb : audienciaBase).slice(0, 3);
 
     const mensagensOrdenado = [...criativosMensagensTodos]
       .filter((c) => c.custoConversa !== null && c.conversas > 0)

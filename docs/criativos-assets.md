@@ -24,5 +24,16 @@ O mapeamento usa o que existe no projeto hoje:
 - o CSV organico usa data no formato `mm/dd/yyyy`
 - o script converte `dd/mm` + ano do periodo do relatorio para buscar o post daquele dia
 
-Quando nao existe `dd/mm` no nome do anuncio, o mapeamento pode ficar sem URL e o card usa placeholder (sem capa generica).
+Quando nao existe `dd/mm` no nome do anuncio (ou a data fica fora do CSV Jul-Dez/2025), o mapeamento pode ficar sem URL e o card usa placeholder.
 
+## Overrides manuais (quando falta `dd/mm`)
+Alguns criativos relevantes (ex.: `Video colecao aura [2]`, `Carrossel colecao aura`) nao trazem data no nome.
+Para nao “chutar” o post, existe um arquivo de override manual:
+
+- `data/creative_overrides.json`
+- Chave: valor do campo **Anúncios** dos exports (ex.: `Ad 2 - Carrossel colecao aura`)
+- Valor: URL permanente do post (`https://www.instagram.com/p/.../` ou `https://www.instagram.com/reel/.../`)
+
+Depois de editar o override:
+1) `python3 scripts/generate_creatives.py`
+2) `python3 scripts/download_instagram_thumbs.py`
