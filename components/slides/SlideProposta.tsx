@@ -130,21 +130,21 @@ export function SlideProposta() {
           <PriceCard
             title="Trimestral"
             price={proposta.trimestral}
-            period="em 3x"
+            period="a vista"
             equivalent="R$ 1.300/mes"
             savings="Economia de 13%"
             footnote="* Contrato trimestral"
-            highlighted
             delay={0.4}
           />
 
           <PriceCard
             title="Semestral"
             price={proposta.semestral}
-            period="em 6x"
+            period="a vista"
             equivalent="R$ 1.000/mes"
             savings="Economia de 33%"
             footnote="* Contrato semestral"
+            highlighted
             delay={0.5}
           />
         </div>

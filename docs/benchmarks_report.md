@@ -15,8 +15,8 @@ Este documento reúne **benchmarks recentes** (2025) para contextualizar perform
 ### 1.3 CPC (Brasil) — Tráfego no Instagram (visitas ao perfil)
 > Para campanhas com foco em **visitas ao perfil** (destino Instagram), o benchmark mais coerente é olhar CPC de **campanhas de Tráfego no Instagram** no Brasil.
 
-- Fonte: Superads Insights Tool — filtros: **Brazil + Instagram + Traffic** (CPC em USD): https://www.superads.ai/facebook-ads-costs/cpc-cost-per-click/brazil/traffic/instagram
-- Faixa 2025 (mín–máx das medianas mensais): **US$ 0,0337–US$ 0,0657** (conversão para R$ na seção 2.1).
+- Fonte: Superads Insights Tool — filtros: **Brazil + Instagram + Traffic + Retail** (CPC em BRL): https://www.superads.ai/facebook-ads-costs/cpc-cost-per-click/retail/brazil/traffic/instagram
+- Faixa 2025 (mín–máx das medianas mensais): **R$ 0,12–R$ 0,40** (sem conversão).
 
 ### 1.4 Benchmarks por vertical (Fashion/Beauty como proxy de joias)
 > Observação: “joias” frequentemente aparece agrupado em relatórios como parte de **fashion/beauty** (vertical visual, apelo estético, alta influência de criativo).
