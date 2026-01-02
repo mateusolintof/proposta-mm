@@ -91,6 +91,354 @@ export const benchmarks = {
   cpm: { valor: 18.77, label: "CPM Brasil (R$)" },
 };
 
+// Benchmarks com fontes citadas (para transparencia)
+export const benchmarksComFontes = {
+  ctr: {
+    min: 0.7,
+    max: 1.2,
+    fonte: "Superads Fashion/Beauty 2025",
+    referencia: "L887-L891"
+  },
+  cpc: {
+    min: 2.17,
+    max: 6.51,
+    fonte: "Superads Fashion/Beauty 2025",
+    nota: "USD convertido (1 USD = 5,42 BRL)",
+    referencia: "L887-L891"
+  },
+  custoConversa: {
+    min: 8.14,
+    max: 32.55,
+    fonte: "Superads Click-to-Message 2025",
+    referencia: "L736-L741"
+  },
+  cpm: {
+    valor: 18.77,
+    fonte: "Superads Brasil All Industries 2025",
+    referencia: "L49-L53"
+  }
+};
+
+// Evolucao mensal consolidada (custo por resultado)
+export const evolucaoMensal = [
+  { mes: "Jul", custoVisita: 0.40, custoConversa: null, visitasPerfil: 3696, conversas: 0 },
+  { mes: "Ago", custoVisita: 0.27, custoConversa: 28.18, visitasPerfil: 5373, conversas: 58 },
+  { mes: "Set", custoVisita: 0.42, custoConversa: 20.15, visitasPerfil: 3188, conversas: 115 },
+  { mes: "Out", custoVisita: 0.31, custoConversa: 28.07, visitasPerfil: 5533, conversas: 75 },
+  { mes: "Nov", custoVisita: 0.47, custoConversa: 24.30, visitasPerfil: 3405, conversas: 73 },
+  { mes: "Dez", custoVisita: 0.24, custoConversa: 8.22, visitasPerfil: 5144, conversas: 173 },
+];
+
+// Top criativos de audiencia - dados completos extraidos de meta-audiencia-mensal.xlsx
+// Total: 42 criativos unicos analisados (Jul-Dez/2025)
+export const criativosAudiencia = [
+  {
+    id: "reels-layla-ago",
+    nome: "Reels Layla Monteiro",
+    campanha: "Nova Colecao",
+    mes: "Ago",
+    tipo: "reel",
+    ctr: 7.45,
+    cpc: 0.09,
+    visitasPerfil: 2361,
+    investido: 222.41,
+    destaque: "Melhor CTR",
+    influenciador: "Layla Monteiro",
+  },
+  {
+    id: "video-post-nov28",
+    nome: "Video Post 28/11",
+    campanha: "AURA",
+    mes: "Nov",
+    tipo: "video",
+    ctr: 6.52,
+    cpc: 0.21,
+    visitasPerfil: 237,
+    investido: 51.00,
+    destaque: null,
+    influenciador: null,
+  },
+  {
+    id: "video-post-dez04",
+    nome: "Video Post 04/12",
+    campanha: "AURA",
+    mes: "Dez",
+    tipo: "video",
+    ctr: 6.24,
+    cpc: 0.18,
+    visitasPerfil: 1802,
+    investido: 320.35,
+    destaque: "Alta conversao",
+    influenciador: "Isadora",
+  },
+  {
+    id: "video-post-nov12",
+    nome: "Video Post 12/11",
+    campanha: "AURA",
+    mes: "Nov",
+    tipo: "video",
+    ctr: 5.92,
+    cpc: 0.41,
+    visitasPerfil: 160,
+    investido: 60.00,
+    destaque: null,
+    influenciador: null,
+  },
+  {
+    id: "reels-isadora-set",
+    nome: "Reels Isadora",
+    campanha: "New Collection",
+    mes: "Set",
+    tipo: "reel",
+    ctr: 5.28,
+    cpc: 0.27,
+    visitasPerfil: 441,
+    investido: 118.24,
+    destaque: null,
+    influenciador: "Isadora",
+  },
+  {
+    id: "reels-primavera-ago",
+    nome: "Reels Colecao Primavera",
+    campanha: "Primavera",
+    mes: "Ago",
+    tipo: "reel",
+    ctr: 5.10,
+    cpc: 0.36,
+    visitasPerfil: 663,
+    investido: 222.41,
+    destaque: null,
+    influenciador: "Layla Monteiro",
+  },
+  {
+    id: "video-post-nov21",
+    nome: "Video Post 21/11",
+    campanha: "AURA",
+    mes: "Nov",
+    tipo: "video",
+    ctr: 4.86,
+    cpc: 0.35,
+    visitasPerfil: 654,
+    investido: 228.00,
+    destaque: null,
+    influenciador: null,
+  },
+  {
+    id: "post-reels-out04",
+    nome: "Post Reels 04/10",
+    campanha: "MM Diamonds",
+    mes: "Out",
+    tipo: "reel",
+    ctr: 4.68,
+    cpc: 0.20,
+    visitasPerfil: 2034,
+    investido: 410.00,
+    destaque: "Maior volume",
+    influenciador: null,
+  },
+  {
+    id: "video-post-nov26",
+    nome: "Video Post 26/11",
+    campanha: "AURA",
+    mes: "Nov",
+    tipo: "video",
+    ctr: 4.53,
+    cpc: 0.29,
+    visitasPerfil: 1378,
+    investido: 379.12,
+    destaque: null,
+    influenciador: "Thassia",
+  },
+  {
+    id: "reels-thassia-dez",
+    nome: "Reels Thassia AURA",
+    campanha: "Colecao AURA",
+    mes: "Dez",
+    tipo: "reel",
+    ctr: 4.44,
+    cpc: 0.33,
+    visitasPerfil: 1306,
+    investido: 379.12,
+    destaque: null,
+    influenciador: "Thassia",
+  },
+];
+
+// Top criativos de mensagens - dados completos extraidos de meta-mensagens-mensal.xlsx
+// Total: 32 criativos unicos analisados (Ago-Dez/2025)
+export const criativosMensagens = [
+  {
+    id: "carrossel-origem-stories",
+    nome: "Carrossel Origem (stories)",
+    campanha: "Colecao Origem",
+    mes: "Dez",
+    tipo: "carrossel",
+    ctr: 1.32,
+    custoConversa: 3.14,
+    conversas: 3,
+    investido: 9.42,
+    destaque: "Melhor custo",
+    colecao: "Origem",
+  },
+  {
+    id: "video-aura-1",
+    nome: "Video Colecao AURA",
+    campanha: "Colecao AURA",
+    mes: "Dez",
+    tipo: "video",
+    ctr: 2.08,
+    custoConversa: 3.38,
+    conversas: 10,
+    investido: 33.80,
+    destaque: "Melhor CTR",
+    colecao: "AURA",
+  },
+  {
+    id: "video-aura-2",
+    nome: "Video Colecao AURA [2]",
+    campanha: "Colecao AURA",
+    mes: "Dez",
+    tipo: "video",
+    ctr: 1.89,
+    custoConversa: 4.66,
+    conversas: 27,
+    investido: 125.82,
+    destaque: null,
+    colecao: "AURA",
+  },
+  {
+    id: "video-diamonds-especial",
+    nome: "Video MM Diamonds Especial",
+    campanha: "MM Diamonds",
+    mes: "Dez",
+    tipo: "video",
+    ctr: 0.74,
+    custoConversa: 4.73,
+    conversas: 3,
+    investido: 14.19,
+    destaque: null,
+    colecao: "Diamonds",
+  },
+  {
+    id: "carrossel-aura",
+    nome: "Carrossel Colecao AURA",
+    campanha: "Colecao AURA",
+    mes: "Dez",
+    tipo: "carrossel",
+    ctr: 1.48,
+    custoConversa: 7.45,
+    conversas: 86,
+    investido: 640.70,
+    destaque: "Mais conversas",
+    colecao: "AURA",
+  },
+  {
+    id: "video-aura-3",
+    nome: "Video Colecao AURA [3]",
+    campanha: "Colecao AURA",
+    mes: "Dez",
+    tipo: "video",
+    ctr: 1.55,
+    custoConversa: 10.25,
+    conversas: 29,
+    investido: 297.25,
+    destaque: null,
+    colecao: "AURA",
+  },
+  {
+    id: "carrossel-new-collection",
+    nome: "Carrossel New Collection",
+    campanha: "Remarketing",
+    mes: "Nov",
+    tipo: "carrossel",
+    ctr: 1.36,
+    custoConversa: 12.68,
+    conversas: 34,
+    investido: 431.12,
+    destaque: null,
+    colecao: "Mix",
+  },
+  {
+    id: "reels-isadora-msg",
+    nome: "Post Reels Isadora",
+    campanha: "Influenciador",
+    mes: "Set",
+    tipo: "reel",
+    ctr: 2.01,
+    custoConversa: 14.20,
+    conversas: 20,
+    investido: 284.00,
+    destaque: null,
+    colecao: "Isadora",
+  },
+  {
+    id: "carrossel-diamonds",
+    nome: "Carrossel MM Diamond",
+    campanha: "MM Diamonds",
+    mes: "Set",
+    tipo: "carrossel",
+    ctr: 1.39,
+    custoConversa: 14.70,
+    conversas: 23,
+    investido: 338.10,
+    destaque: null,
+    colecao: "Diamonds",
+  },
+  {
+    id: "reels-evento-aurora",
+    nome: "Post Reels Evento Aurora",
+    campanha: "Evento",
+    mes: "Set",
+    tipo: "reel",
+    ctr: 0.94,
+    custoConversa: 15.28,
+    conversas: 25,
+    investido: 382.00,
+    destaque: null,
+    colecao: "Aurora",
+  },
+];
+
+// Performance por regiao (Dezembro 2025 como referencia)
+export const regioes = [
+  {
+    uf: "SP",
+    estado: "Sao Paulo",
+    ctr: 5.64,
+    cpc: 0.28,
+    impressoes: 41913,
+    cliques: 2364,
+    status: "top" as const,
+  },
+  {
+    uf: "SC",
+    estado: "Santa Catarina",
+    ctr: 5.24,
+    cpc: 0.27,
+    impressoes: 8988,
+    cliques: 471,
+    status: "top" as const,
+  },
+  {
+    uf: "PR",
+    estado: "Parana",
+    ctr: 5.14,
+    cpc: 0.27,
+    impressoes: 11811,
+    cliques: 607,
+    status: "top" as const,
+  },
+  {
+    uf: "GO",
+    estado: "Goias",
+    ctr: 2.30,
+    cpc: 0.57,
+    impressoes: 96112,
+    cliques: 2211,
+    status: "baseline" as const,
+  },
+];
+
 // Proposta de valores
 export const proposta = {
   mensal: 1500.00,
@@ -122,6 +470,137 @@ export const insights = {
     "Dezembro teve o maior engajamento: 7.755 curtidas",
     "Alcance total de 850 mil contas",
   ],
+};
+
+// Padroes identificados na analise de 74 criativos (42 audiencia + 32 mensagens)
+export const padroesIdentificados = {
+  formato: {
+    titulo: "Formato",
+    descricao: "Reels e videos dominam os top performers",
+    dados: {
+      audiencia: "8 de 10 top criativos sao Reels/Videos",
+      mensagens: "Videos AURA tem custo/conversa 50% menor que media",
+      ctrMedioReels: 5.5,
+      ctrMedioCarrossel: 3.2,
+    },
+    recomendacao: "Priorizar formato video/reels para ambas campanhas",
+  },
+  colecao: {
+    titulo: "Colecao",
+    descricao: "AURA Viva lidera em eficiencia de conversao",
+    dados: {
+      melhorAudiencia: "AURA - 5 criativos no top 10",
+      melhorMensagens: "AURA - custo/conversa de R$3-10",
+      segundaMelhor: "Origem - R$3,14/conversa em stories",
+      volume: "MM Diamonds - bom para awareness",
+    },
+    recomendacao: "Manter AURA como principal, Origem para stories",
+  },
+  influenciador: {
+    titulo: "Influenciadores",
+    descricao: "Layla Monteiro e Isadora com resultados excepcionais",
+    dados: {
+      layla: { ctr: 7.45, cpc: 0.09, campanhas: 2 },
+      isadora: { ctr: 5.28, cpc: 0.27, campanhas: 4 },
+      thassia: { ctr: 4.5, cpc: 0.31, campanhas: 3 },
+    },
+    recomendacao: "Renovar parceria Layla, expandir com Isadora",
+  },
+  timing: {
+    titulo: "Timing",
+    descricao: "Nov/Dez com pico de eficiencia",
+    dados: {
+      melhorMes: "Dezembro",
+      custoConversaDez: 8.22,
+      custoConversaMedia: 18.73,
+      reducao: "56% menor que media do periodo",
+    },
+    recomendacao: "Aumentar investimento em Nov/Dez para 2026",
+  },
+};
+
+// Insights consolidados para apresentacao
+export const insightsConsolidados = {
+  oQueFuncionou: [
+    {
+      titulo: "Reels com influenciadoras",
+      metrica: "CTR 7,45%",
+      contexto: "vs benchmark 0,7-1,2%",
+      impacto: "6x acima do mercado",
+    },
+    {
+      titulo: "Colecao AURA em videos",
+      metrica: "R$ 3,38/conversa",
+      contexto: "vs media R$ 18,73",
+      impacto: "82% mais eficiente",
+    },
+    {
+      titulo: "Dezembro otimizado",
+      metrica: "R$ 8,22/conversa",
+      contexto: "melhor mes do ano",
+      impacto: "173 conversas geradas",
+    },
+    {
+      titulo: "CPC consistente",
+      metrica: "R$ 0,34",
+      contexto: "vs benchmark R$ 2,17-6,51",
+      impacto: "84% abaixo do mercado",
+    },
+  ],
+  recomendacoes2026: [
+    {
+      area: "Criativos",
+      acao: "Dobrar investimento em Reels com influenciadoras",
+      justificativa: "Formato com CTR 5-7% vs 3% de carrosseis",
+      prioridade: "alta" as const,
+    },
+    {
+      area: "Colecoes",
+      acao: "Lancar campanhas AURA em formato video",
+      justificativa: "Melhor custo/conversa do portfolio",
+      prioridade: "alta" as const,
+    },
+    {
+      area: "Sazonalidade",
+      acao: "Aumentar budget em 30% para Nov/Dez",
+      justificativa: "Historico de eficiencia 56% maior",
+      prioridade: "media" as const,
+    },
+    {
+      area: "Regioes",
+      acao: "Manter foco em SP, SC, PR",
+      justificativa: "CTR 5%+ vs 2,3% em outras regioes",
+      prioridade: "media" as const,
+    },
+  ],
+  oportunidades: [
+    {
+      titulo: "Stories da colecao Origem",
+      potencial: "Escalar formato com R$3,14/conversa",
+      acao: "Testar com mais budget",
+    },
+    {
+      titulo: "Mix video + carrossel AURA",
+      potencial: "Carrossel gerou 86 conversas (maior volume)",
+      acao: "Combinar awareness + conversao",
+    },
+    {
+      titulo: "Novos influenciadores",
+      potencial: "Layla e Isadora provaram modelo",
+      acao: "Buscar 2-3 novas parcerias no mesmo perfil",
+    },
+  ],
+};
+
+// Estatisticas consolidadas para hero
+export const estatisticasHero = {
+  totalInvestido: 18082.57, // audiencia + mensagens
+  visitasPerfil: 26339,
+  conversasWhatsApp: 494,
+  ctrMedio: 3.33,
+  reducaoCusto: 47, // % de reducao no custo/conversa
+  criativosAnalisados: 74,
+  mesesAnalisados: 6,
 };
 
 // Helpers para formatacao

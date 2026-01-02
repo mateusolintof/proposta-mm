@@ -4,13 +4,14 @@ Este arquivo define **como uma IA/agente deve construir e manter** este reposito
 
 ## 0) Contexto
 
-Apresentacao **premium** em formato **pitch deck** (slides horizontais) para **renovacao de contrato de trafego pago** de uma loja de joias (ticket medio ~R$ 4-5 mil), reunindo:
-- **Performance (Meta Ads + Instagram organico)** dos ultimos 6 meses
-- **Narrativa executiva** (o que foi feito, o que melhorou, por que)
+Apresentacao **premium** em formato **pitch deck** (slides horizontais com scroll vertical) para **renovacao de contrato de trafego pago** de uma loja de joias (ticket medio ~R$ 4-5 mil), reunindo:
+- **Performance (Meta Ads + Instagram organico)** dos ultimos 6 meses (Jul-Dez/2025)
+- **Analise de 74 criativos** (42 audiencia + 32 mensagens)
+- **Padroes identificados** e insights para 2026
 - **Plano 30/60/90 dias**
 - **Proposta financeira** (valores, escopo, condicoes)
 
-**Formato:** Single Page Application com 10 slides horizontais navegaveis por swipe (mobile) ou teclado (desktop).
+**Formato:** Single Page Application com 5 slides horizontais navegaveis por swipe (mobile) ou teclado (desktop), com scroll vertical em cada slide.
 
 **Design:** Dark Premium com acentos dourados.
 
@@ -20,21 +21,16 @@ Apresentacao **premium** em formato **pitch deck** (slides horizontais) para **r
 MM-Renovacao/
 ├── app/
 │   ├── layout.tsx           # Root layout (dark theme, fonts)
-│   ├── page.tsx             # SPA com navegacao de slides
+│   ├── page.tsx             # SPA com navegacao de 5 slides
 │   └── globals.css          # Tema dark premium + CSS variables
 ├── components/
-│   ├── slides/              # 10 slides da apresentacao
+│   ├── slides/              # 5 slides da apresentacao
 │   │   ├── SlideContainer.tsx
 │   │   ├── SlideHero.tsx
-│   │   ├── SlideKPIs.tsx
-│   │   ├── SlideAudiencia.tsx
-│   │   ├── SlideMensagens.tsx
-│   │   ├── SlideBenchmarks.tsx
-│   │   ├── SlideOrganico.tsx
-│   │   ├── SlideConquistas.tsx
-│   │   ├── SlidePlano.tsx
-│   │   ├── SlideProposta.tsx
-│   │   └── SlideCTA.tsx
+│   │   ├── SlideResultados.tsx
+│   │   ├── SlideCriativos.tsx
+│   │   ├── SlideInsights.tsx
+│   │   └── SlideProposta.tsx
 │   ├── animated/            # Componentes animados
 │   │   ├── NumberTicker.tsx
 │   │   ├── AnimatedKPI.tsx
@@ -47,7 +43,7 @@ MM-Renovacao/
 │   ├── useSlideNavigation.ts
 │   └── useSwipe.ts
 ├── lib/
-│   ├── data.ts              # Dados consolidados dos docs
+│   ├── data.ts              # Dados consolidados (criativos, padroes, insights)
 │   └── utils.ts             # Utilities (cn, etc)
 ├── docs/                    # Fonte de verdade dos dados
 │   ├── dados_internos.md
@@ -63,12 +59,19 @@ MM-Renovacao/
 │   ├── meta-audiencia-mensal.xlsx
 │   ├── meta-mensagens-mensal.xlsx
 │   └── instagram-organico-mensal.csv
-└── CLAUDE.md                # Este arquivo (symlink para AGENTS.md)
+├── public/ads/              # Imagens dos criativos
+│   ├── mm-anel-01.jpg
+│   ├── mm-colar-01.jpg
+│   ├── mm-diamonds-01.jpg
+│   ├── mm-diamonds-02.jpg
+│   ├── mm-diamonds-03.jpg
+│   └── mm-esmeraldas-01.jpg
+└── CLAUDE.md                # Este arquivo
 ```
 
 ## 2) Principios (nao negociaveis)
 
-- **Nao inventar numeros.** Usar somente o que esta em `docs/dados_internos.md`, `docs/benchmarks_report.md` e `docs/proposta-valor.md`.
+- **Nao inventar numeros.** Usar somente dados de `lib/data.ts` (consolidados de `docs/` e `data/`).
 - **Sem integracoes/API** (Meta/GA4/Google Ads) nesta fase.
 - **Mobile-first**: layout e tipografia priorizam telas pequenas; desktop deve ser responsivo e confortavel.
 - Texto enxuto: **1 insight por bloco**.
@@ -107,63 +110,60 @@ MM-Renovacao/
 
 ## 4) Fonte de verdade de dados
 
-### 4.1 Fonte primaria
-- `docs/dados_internos.md` (tabelas mensais e totais ja consolidados)
-- `docs/benchmarks_report.md` (benchmarks e conversoes)
-- `docs/proposta-valor.md` (precos)
+### 4.1 Fonte primaria (`lib/data.ts`)
+
+Todos os dados exibidos na apresentacao vem de `lib/data.ts`, que exporta:
+
+| Export | Descricao |
+|--------|-----------|
+| `estatisticasHero` | KPIs principais (investimento, visitas, conversas, CTR) |
+| `evolucaoMensal` | Dados mensais para graficos (Jul-Dez/2025) |
+| `benchmarks` | Comparativos de mercado (CPM, CTR, CPC) |
+| `criativosAudiencia` | Top 10 criativos de audiencia |
+| `criativosMensagens` | Top 10 criativos de mensagens |
+| `padroesIdentificados` | Padroes extraidos da analise (formato, colecao, influenciador, timing) |
+| `insightsConsolidados` | O que funcionou, recomendacoes 2026, oportunidades |
+| `proposta` | Valores da proposta financeira |
+| `regioes` | Performance por regiao |
+| `conquistas` | Lista de resultados do periodo |
 
 ### 4.2 Fonte secundaria (arquivos brutos em `data/`)
 
 Os arquivos em `data/` servem como referencia/lastro dos dados consolidados:
 
 **Relatorios mensais Meta Ads (PDFs):**
-| Arquivo | Periodo | Conteudo |
-|---------|---------|----------|
-| `relatorio-meta-2025-07.pdf` | Jul/2025 | Relatorio completo Meta Ads |
-| `relatorio-meta-2025-08.pdf` | Ago/2025 | Relatorio completo Meta Ads |
-| `relatorio-meta-2025-09.pdf` | Set/2025 | Relatorio completo Meta Ads |
-| `relatorio-meta-2025-10.pdf` | Out/2025 | Relatorio completo Meta Ads |
-| `relatorio-meta-2025-11.pdf` | Nov/2025 | Relatorio completo Meta Ads |
-| `relatorio-meta-2025-12.pdf` | Dez/2025 | Relatorio completo Meta Ads |
+| Arquivo | Periodo |
+|---------|---------|
+| `relatorio-meta-2025-07.pdf` | Jul/2025 |
+| `relatorio-meta-2025-08.pdf` | Ago/2025 |
+| `relatorio-meta-2025-09.pdf` | Set/2025 |
+| `relatorio-meta-2025-10.pdf` | Out/2025 |
+| `relatorio-meta-2025-11.pdf` | Nov/2025 |
+| `relatorio-meta-2025-12.pdf` | Dez/2025 |
 
-**Planilhas consolidadas (dados mensais):**
+**Planilhas consolidadas:**
 | Arquivo | Conteudo |
 |---------|----------|
-| `meta-audiencia-mensal.xlsx` | Campanhas de audiencia (Jul-Dez/2025) |
-| `meta-mensagens-mensal.xlsx` | Campanhas de mensagem (Ago-Dez/2025) |
+| `meta-audiencia-mensal.xlsx` | Campanhas de audiencia (Jul-Dez/2025) - 42 criativos |
+| `meta-mensagens-mensal.xlsx` | Campanhas de mensagem (Ago-Dez/2025) - 32 criativos |
 | `instagram-organico-mensal.csv` | Metricas organicas Instagram (Jul-Dez/2025) |
 
-### 4.3 Dados exibidos na apresentacao
-**Meta Ads — Audiencia (Jul-Dez/2025)**
-- Gasto, visitas ao perfil, custo por visita, CTR, CPC
+## 5) Estrutura do app (5 slides)
 
-**Meta Ads — Mensagens (Ago-Dez/2025)**
-- Gasto, conversas iniciadas, custo por conversa
-
-**Instagram organico — Feed/Reels (Jul-Dez/2025)**
-- Posts, seguidores, alcance (indicador secundario)
-
-## 5) Estrutura do app (slides horizontais)
-
-O app e uma **Single Page Application** com 10 slides navegaveis:
+O app e uma **Single Page Application** com 5 slides navegaveis horizontalmente, cada um com scroll vertical:
 
 ```
 / (SPA)
-├── Slide 0: Hero         → "6 meses de resultados"
-├── Slide 1: KPIs         → 4 metricas principais animadas
-├── Slide 2: Audiencia    → Graficos gasto vs visitas
-├── Slide 3: Mensagens    → Graficos gasto vs conversas
-├── Slide 4: Benchmarks   → Comparativo com mercado
-├── Slide 5: Organico     → Metricas Instagram (secundario)
-├── Slide 6: Conquistas   → Lista de resultados
-├── Slide 7: Plano        → Roadmap 30/60/90 dias
-├── Slide 8: Proposta     → Pricing cards
-└── Slide 9: CTA          → Botoes WhatsApp/Email
+├── Slide 0: Hero       → Capa minimalista (Monica Metran + periodo)
+├── Slide 1: Resultados → KPIs + Evolucao mensal + Benchmarks
+├── Slide 2: Criativos  → Grid visual com imagens + filtros por colecao
+├── Slide 3: Insights   → Padroes + O que funcionou + Recomendacoes 2026
+└── Slide 4: Proposta   → Plano 30/60/90 + Pricing cards + CTA
 ```
 
 ### Navegacao
-- **Mobile:** Swipe horizontal (touch)
-- **Desktop:** Setas do teclado (←→, Space) + clique nos indicadores
+- **Mobile:** Swipe horizontal (touch) entre slides + scroll vertical no conteudo
+- **Desktop:** Setas do teclado (←→, Space) + clique nos indicadores + scroll vertical
 - **Progress bar:** Linha dourada no topo
 - **Indicadores:** Dots na lateral direita
 
@@ -173,17 +173,12 @@ O app e uma **Single Page Application** com 10 slides navegaveis:
 
 | Componente | Descricao |
 |------------|-----------|
-| `SlideContainer.tsx` | Container com animacoes Framer Motion |
-| `SlideHero.tsx` | Abertura com headline animada |
-| `SlideKPIs.tsx` | 4 cards com NumberTicker |
-| `SlideAudiencia.tsx` | Graficos ComposedChart (gasto + visitas) |
-| `SlideMensagens.tsx` | Graficos ComposedChart (gasto + conversas) |
-| `SlideBenchmarks.tsx` | Comparativo barras horizontais |
-| `SlideOrganico.tsx` | Metricas Instagram com badge "secundario" |
-| `SlideConquistas.tsx` | Lista animada staggered |
-| `SlidePlano.tsx` | Roadmap em 3 cards (30/60/90) |
-| `SlideProposta.tsx` | Pricing cards (mensal/trimestral/semestral) |
-| `SlideCTA.tsx` | CTAs WhatsApp + Email |
+| `SlideContainer.tsx` | Container com animacoes Framer Motion + scroll vertical |
+| `SlideHero.tsx` | Abertura minimalista centralizada |
+| `SlideResultados.tsx` | 4 KPIs + grafico evolucao + barras de benchmark |
+| `SlideCriativos.tsx` | Grid de criativos com imagens + tabs de filtro |
+| `SlideInsights.tsx` | Padroes identificados + o que funcionou + recomendacoes |
+| `SlideProposta.tsx` | Roadmap 30/60/90 + pricing cards + CTAs |
 
 ### 6.2 Animados (`components/animated/`)
 
@@ -255,18 +250,7 @@ font-variant-numeric: tabular-nums;
 
 - **Glow:** `box-shadow: 0 0 20px rgba(212, 175, 55, 0.3)`
 - **Glass:** `backdrop-filter: blur(12px)` + borda sutil
-- **Noise:** Overlay com textura de ruido (opacity 0.03)
 - **Gradients:** Gradiente dourado em textos destacados
-
-### 7.4 Classes utilitarias
-
-```css
-.card          /* Card base com borda sutil */
-.card-gold     /* Card com borda dourada */
-.glow-gold     /* Efeito glow */
-.glass         /* Glassmorphism */
-.text-gradient-gold  /* Texto com gradiente */
-```
 
 ## 8) Navegacao
 
@@ -274,7 +258,7 @@ font-variant-numeric: tabular-nums;
 
 ```typescript
 const {
-  currentSlide,    // Indice atual (0-9)
+  currentSlide,    // Indice atual (0-4)
   direction,       // Direcao da transicao (-1 ou 1)
   goToSlide,       // (index) => void
   goNext,          // () => void
@@ -282,7 +266,7 @@ const {
   isFirst,         // boolean
   isLast,          // boolean
   progress,        // 0-100 (porcentagem)
-} = useSlideNavigation({ totalSlides: 10 });
+} = useSlideNavigation({ totalSlides: 5 });
 ```
 
 ### 8.2 Keyboard shortcuts
@@ -300,14 +284,14 @@ const {
 - Swipe right → slide anterior
 - Threshold: 50px
 
-## 9) Regras de calculo (sem inventar)
+## 9) Regras de calculo
 
 - CTR = cliques / impressoes
 - CPC = gasto / cliques
 - Custo por visita = gasto / visitas ao perfil
 - Custo por conversa = gasto / conversas iniciadas
 
-Os valores devem ser lidos de `docs/dados_internos.md`.
+Os valores estao pre-calculados em `lib/data.ts`.
 
 ## 10) Copy e narrativa
 
@@ -319,8 +303,9 @@ Tom: executivo, direto, sem hype.
 
 ## 11) Assets de criativos
 
-- Colocar imagens em `public/ads/` se necessario
-- Nomear com padrao: `YYYY-MM__campanha__anuncio.png`
+Imagens em `public/ads/`:
+- Nomear com padrao: `mm-{colecao}-{numero}.jpg`
+- Dimensoes recomendadas: 400x400px (thumbnails)
 
 ## 12) DevEx: scripts e comandos
 
@@ -341,31 +326,35 @@ Commits devem ser pequenos e descritivos.
 
 ## 14) Definicao de pronto (DoD)
 
-- [x] 10 slides implementados e navegaveis
+- [x] 5 slides implementados e navegaveis
+- [x] Scroll vertical em slides com conteudo longo
 - [x] Navegacao por swipe funcional em mobile
 - [x] Navegacao por teclado funcional em desktop
-- [x] NumberTicker animando em todos os KPIs
 - [x] Graficos com animacao de entrada
 - [x] Transicoes suaves entre slides
 - [x] Tema dark premium consistente
-- [x] Dados corretos conforme docs/
+- [x] Dados corretos conforme lib/data.ts
 - [x] CTA funcional (WhatsApp + Email)
 - [x] Layout responsivo (mobile-first)
 
-## 15) Status da Implementacao (Dez/2025)
+## 15) Status da Implementacao (Jan/2026)
 
-### Implementacao Concluida
+### Reestruturacao para 5 Slides
 
-O projeto foi **completamente reestruturado** em 30/12/2025, migrando de uma arquitetura multi-pagina para **slides horizontais (pitch deck)**.
+O projeto foi **reestruturado** em 31/12/2025, consolidando de 10 slides para 5 slides com scroll vertical.
 
-**Mudancas principais:**
-- Removidas rotas `/performance`, `/plano`, `/proposta`
-- Removidos componentes antigos (HeaderNav, KpiCard, ChartCard, Tabs, etc)
-- Adicionado Framer Motion para animacoes
-- Adicionado @number-flow/react para NumberTicker
-- Criados 10 slides navegaveis
-- Implementado tema dark premium
-- Implementada navegacao por swipe e teclado
+**Nova arquitetura:**
+1. **SlideHero** - Capa minimalista
+2. **SlideResultados** - Consolidou KPIs + Evolucao + Benchmarks
+3. **SlideCriativos** - Grid visual com imagens reais
+4. **SlideInsights** - Padroes + Recomendacoes + Oportunidades
+5. **SlideProposta** - Plano 30/60/90 + Pricing + CTA
+
+**Dados adicionados em lib/data.ts:**
+- 42 criativos de audiencia analisados
+- 32 criativos de mensagens analisados
+- Padroes identificados (formato, colecao, influenciador, timing)
+- Insights consolidados para 2026
 
 **Contato CTA:**
 - Email: mateusolintof@gmail.com
@@ -373,4 +362,4 @@ O projeto foi **completamente reestruturado** em 30/12/2025, migrando de uma arq
 
 ---
 
-**Nota para agentes:** Este projeto usa arquitetura de slides horizontais (SPA). NAO criar novas rotas/paginas. Todas as modificacoes devem ser feitas nos componentes de slides existentes ou criando novos slides se necessario.
+**Nota para agentes:** Este projeto usa arquitetura de slides horizontais com scroll vertical (SPA). NAO criar novas rotas/paginas. Todas as modificacoes devem ser feitas nos componentes de slides existentes.

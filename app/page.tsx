@@ -10,29 +10,19 @@ import {
 } from "@/components/navigation/SlideIndicators";
 import { SlideContainer } from "@/components/slides/SlideContainer";
 
-// Slides
+// Slides - Nova estrutura consolidada (5 slides)
 import { SlideHero } from "@/components/slides/SlideHero";
-import { SlideKPIs } from "@/components/slides/SlideKPIs";
-import { SlideAudiencia } from "@/components/slides/SlideAudiencia";
-import { SlideMensagens } from "@/components/slides/SlideMensagens";
-import { SlideBenchmarks } from "@/components/slides/SlideBenchmarks";
-import { SlideOrganico } from "@/components/slides/SlideOrganico";
-import { SlideConquistas } from "@/components/slides/SlideConquistas";
-import { SlidePlano } from "@/components/slides/SlidePlano";
+import { SlideResultados } from "@/components/slides/SlideResultados";
+import { SlideCriativos } from "@/components/slides/SlideCriativos";
+import { SlideInsights } from "@/components/slides/SlideInsights";
 import { SlideProposta } from "@/components/slides/SlideProposta";
-import { SlideCTA } from "@/components/slides/SlideCTA";
 
 const SLIDES = [
-  { id: "hero", component: SlideHero },
-  { id: "kpis", component: SlideKPIs },
-  { id: "audiencia", component: SlideAudiencia },
-  { id: "mensagens", component: SlideMensagens },
-  { id: "benchmarks", component: SlideBenchmarks },
-  { id: "organico", component: SlideOrganico },
-  { id: "conquistas", component: SlideConquistas },
-  { id: "plano", component: SlidePlano },
-  { id: "proposta", component: SlideProposta },
-  { id: "cta", component: SlideCTA },
+  { id: "hero", component: SlideHero },           // 0: Capa minimalista
+  { id: "resultados", component: SlideResultados }, // 1: KPIs + Evolucao + Benchmarks
+  { id: "criativos", component: SlideCriativos }, // 2: Grid visual com imagens
+  { id: "insights", component: SlideInsights },   // 3: Padroes + Recomendacoes
+  { id: "proposta", component: SlideProposta },   // 4: Plano 30/60/90 + Pricing + CTA
 ];
 
 export default function Home() {
